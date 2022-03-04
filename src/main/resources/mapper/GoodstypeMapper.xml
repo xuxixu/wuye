@@ -6,7 +6,7 @@
         insert into goodstype values(null,#{name},#{remark})
     </insert>
     <update id="updateGoodstype" parameterType="com.zhumeijia.wuye.bean.Goodstype">
-        update goodstype set name = #{name}, remark = #{remark} where id = #{id}
+        update goodstype set `name` = #{name} ,`remark` = #{remark}  where id = #{id}
     </update>
     <delete id="delGoodstype" parameterType="int">
         DELETE from goodstype where id=#{id}

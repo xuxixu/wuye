@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.WarehouseMapper">
+    <insert id="addWarehouse" parameterType="com.zhumeijia.wuye.bean.Warehouse">
+        insert into warehouse values(null,#{name},#{local})
+    </insert>
+    <update id="updateWarehouse" parameterType="com.zhumeijia.wuye.bean.Warehouse">
+        update warehouse set `name` = #{name} ,`local` = #{local}  where id = #{id}
+    </update>
+    <delete id="delWarehouse" parameterType="int">
+        DELETE from warehouse where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from warehouse
+    </select>
+    <select id="getAllWarehouse" resultType="com.zhumeijia.wuye.bean.Warehouse">
+        select * from warehouse limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from warehouse where name like #{name}
+    </select>
+    <select id="findWarehouse" resultType="com.zhumeijia.wuye.bean.Warehouse">
+        select * from warehouse where name like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllWarehouses" resultType="com.zhumeijia.wuye.bean.Warehouse">
+        select * from warehouse
+    </select>
+</mapper>
+
