@@ -1,0 +1,18 @@
+2022-03-02 22:10:36.514 [restartedMain] INFO  com.zhumeijia.wuye.WuyeApplication - Starting WuyeApplication using Java 1.8.0_202 on DESKTOP-LHTCF30 with PID 11132 (C:\Users\xuxin\IdeaProjects\zhumeijia\wuye\target\classes started by xuxin in C:\Users\xuxin\IdeaProjects\zhumeijia\wuye)
+2022-03-02 22:10:36.517 [restartedMain] INFO  com.zhumeijia.wuye.WuyeApplication - No active profile set, falling back to 1 default profile: "default"
+2022-03-02 22:10:36.551 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-03-02 22:10:36.551 [restartedMain] INFO  o.s.b.d.env.DevToolsPropertyDefaultsPostProcessor - For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-03-02 22:10:37.099 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Bootstrapping Spring Data JDBC repositories in DEFAULT mode.
+2022-03-02 22:10:37.111 [restartedMain] INFO  o.s.d.r.config.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 JDBC repository interfaces.
+2022-03-02 22:10:37.490 [restartedMain] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port(s): 8080 (http)
+2022-03-02 22:10:37.498 [restartedMain] INFO  org.apache.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2022-03-02 22:10:37.498 [restartedMain] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2022-03-02 22:10:37.499 [restartedMain] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-03-02 22:10:37.583 [restartedMain] INFO  o.a.c.core.ContainerBase.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2022-03-02 22:10:37.583 [restartedMain] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1031 ms
+2022-03-02 22:10:38.093 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closing ...
+2022-03-02 22:10:38.093 [restartedMain] INFO  com.alibaba.druid.pool.DruidDataSource - {dataSource-1} closed
+2022-03-02 22:10:38.095 [restartedMain] INFO  org.apache.catalina.core.StandardService - Stopping service [Tomcat]
+2022-03-02 22:10:38.103 [restartedMain] INFO  o.s.b.a.l.ConditionEvaluationReportLoggingListener - 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
