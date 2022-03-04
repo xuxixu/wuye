@@ -1,7 +1,7 @@
 package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Goodstype;
-import com.zhumeijia.wuye.dao.GoodstypeDao;
+import com.zhumeijia.wuye.mapper.GoodstypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,36 +10,51 @@ import java.util.List;
 @Service
 public class GoodsTypeService {
     @Autowired
-    GoodstypeDao dao;
+    GoodstypeMapper goodstypeMapper;
     public int getCount() {
-        return dao.getCount();
+        return goodstypeMapper.getCountAll();
     }
 
     public List<Goodstype> getAllGoodstype(int page, int limit) {
-        return dao.getAllGoodstype(page,limit);
+        List<Goodstype> list = goodstypeMapper.getAllGoodstype((page - 1) * limit, limit);
+        if (list!=null){
+            return list;
+        }else{
+            return null;
+        }
     }
 
     public int addGoodstype(Goodstype goodstype) {
-        return dao.addGoodstype(goodstype);
+        return goodstypeMapper.addGoodstype(goodstype);
     }
 
     public int updateGoodstype(Goodstype goodstype) {
-        return dao.updateGoodstype(goodstype);
+        return goodstypeMapper.updateGoodstype(goodstype);
     }
 
     public int delGoodstype(int id) {
-        return dao.delGoodstype(id);
+        return goodstypeMapper.delGoodstype(id);
     }
 
     public int getCount(String name) {
-        return dao.getCount(name);
+        return goodstypeMapper.getCountByName(name);
     }
 
     public List<Goodstype> findGoodstype(int page, int limit, String name) {
-        return dao.findGoodstype(page,limit,name);
+        List<Goodstype> list = goodstypeMapper.findGoodstype((page - 1) * limit, limit, name);
+        if (list!=null){
+            return list;
+        }else{
+            return null;
+        }
     }
 
     public List<Goodstype> getAllGoodstypes() {
-        return dao.getAllGoodstypes();
+        List<Goodstype> list = goodstypeMapper.getAllGoodstypes();
+        if (list!=null){
+            return list;
+        }else{
+            return null;
+        }
     }
 }

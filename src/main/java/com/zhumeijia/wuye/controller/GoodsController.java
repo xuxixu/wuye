@@ -42,14 +42,15 @@ public class GoodsController {
 
     @PostMapping("/api/caiyong")
     public ResBody caiyong(@RequestBody Goods goods) {
+
         ResBody resBody = new ResBody();
         int i = service.caiyong(goods);
         if (i == 1){
             resBody.setCode(200);
-            resBody.setMsg("修改成功");
+            resBody.setMsg("申请成功");
         }else{
             resBody.setCode(500);
-            resBody.setMsg("修改失败");
+            resBody.setMsg("申请失败");
         }
         return resBody;
     }

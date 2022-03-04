@@ -13,7 +13,7 @@ public class Repair {
     String content;
     Integer status;
     Date time;
-    Integer user_id;
+    Integer uid;
     User user;
     String result;
 }

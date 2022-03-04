@@ -1,6 +1,7 @@
 package com.zhumeijia.wuye.dao;
 
 import com.zhumeijia.wuye.bean.Goodstype;
+import com.zhumeijia.wuye.mapper.GoodstypeMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -11,15 +12,13 @@ import java.util.List;
 @Repository
 public class GoodstypeDao {
     @Autowired
-    JdbcTemplate template;
+    GoodstypeMapper goodstypeMapper;
     public int getCount() {
-        int count = template.queryForObject("select count(*) from goodstype", Integer.class);
-        return count;
+       return goodstypeMapper.getCountAll();
     }
 
     public List<Goodstype> getAllGoodstype(int page, int limit) {
-        List<Goodstype> list = template.query("select * from goodstype limit ?,?" ,new Object[]{(page-1)*limit,limit},
-                new BeanPropertyRowMapper(Goodstype.class));
+        List<Goodstype> list = goodstypeMapper.getAllGoodstype((page - 1) * limit, limit);
         if (list!=null){
             return list;
         }else{
@@ -28,27 +27,23 @@ public class GoodstypeDao {
     }
 
     public int addGoodstype(Goodstype goodstype) {
-        return template.update("insert into goodstype values(null,?,?)",
-                goodstype.getName(),goodstype.getRemark());
+        return goodstypeMapper.addGoodstype(goodstype);
     }
 
     public int updateGoodstype(Goodstype goodstype) {
-        return template.update("update goodstype set name = ?, remark = ? where id = ?",
-                goodstype.getName(),goodstype.getRemark(), goodstype.getId());
+        return goodstypeMapper.updateGoodstype(goodstype);
     }
 
     public int delGoodstype(int id) {
-        return template.update("DELETE from goodstype where id=?",id);
+        return goodstypeMapper.delGoodstype(id);
     }
 
     public int getCount(String name) {
-        int count = template.queryForObject("select count(*) from goodstype where name like '%"+name+"%' ", Integer.class);
-        return count;
+       return goodstypeMapper.getCountByName(name);
     }
 
     public List<Goodstype> findGoodstype(int page, int limit, String name) {
-        List<Goodstype> list = template.query("select * from goodstype where name like '%"+name+"%' limit ?,?" ,new Object[]{(page-1)*limit,limit},
-                new BeanPropertyRowMapper(Goodstype.class));
+        List<Goodstype> list = goodstypeMapper.findGoodstype((page - 1) * limit, limit, name);
         if (list!=null){
             return list;
         }else{
@@ -57,8 +52,7 @@ public class GoodstypeDao {
     }
 
     public List<Goodstype> getAllGoodstypes() {
-        List<Goodstype> list = template.query("select * from goodstype",
-                new BeanPropertyRowMapper(Goodstype.class));
+        List<Goodstype> list = goodstypeMapper.getAllGoodstypes();
         if (list!=null){
             return list;
         }else{

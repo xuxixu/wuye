@@ -8,6 +8,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
 import java.util.List;
 
@@ -60,8 +61,9 @@ public class GoodsDao {
 
 
     public int shenqing(Goods goods) {
+        System.out.println(goods);
         return template.update("insert into procurement values(null,?,?,?,?,?,?,?)",
-                goods.getNumber(), goods.getName(), goods.getGtid(), goods.getWhid(),new Date(),0,goods.getNumber()*goods.getPrices());
+                goods.getNumber(),goods.getName(), goods.getGtid(), goods.getWhid(),new Date(),0,goods.getNumber()*goods.getPrices());
     }
     public int caiyong(Goods goods) {
         List<Goods> list = template.query("select * from goods where id = ?" ,new Object[]{goods.getId()},
@@ -70,8 +72,10 @@ public class GoodsDao {
         {
             return -1;
         }else {
+            System.out.println(goods);
             return template.update("insert into adoption values(null,?,?,?,0)",
-                    goods.getName(),goods.getNumber(), new Date());
+                    list.get(0).getName(),goods.getNumber(), new Date());
+
         }
     }
 
@@ -112,5 +116,9 @@ public class GoodsDao {
 
     public void updateNumberByName(long number, String name) {
          template.update("update `goods` set number = ? where name = ?", number,name);
+    }
+
+    public void delGoods(long id) {
+        template.update("DELETE from goods where id=?",id);
     }
 }

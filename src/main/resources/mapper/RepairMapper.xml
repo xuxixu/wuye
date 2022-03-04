@@ -1,0 +1,43 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.RepairMapper">
+    <insert id="addRepair" parameterType="com.zhumeijia.wuye.bean.Repair">
+        insert into repair values(null,#{content},#{uid},#{status},#{time},#{result})
+    </insert>
+    <update id="updateRepair" parameterType="com.zhumeijia.wuye.bean.Repair">
+        update repair set`content` = #{content} ,`status` = #{status},`result` = #{result} where id = #{id}
+    </update>
+    <delete id="delRepair" parameterType="int">
+        DELETE from repair where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from repair
+    </select>
+    <select id="getAllRepair" resultType="com.zhumeijia.wuye.bean.Repair">
+        select * from repair limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from repair where status like #{status}
+    </select>
+    <select id="findRepair" resultType="com.zhumeijia.wuye.bean.Repair">
+        select * from repair where status like #{status} limit #{page},#{limit}
+    </select>
+    <select id="getAllRepairs" resultType="com.zhumeijia.wuye.bean.Repair">
+        select * from repair
+    </select>
+    <select id="getFreeCount" resultType="java.lang.Integer">
+        select count(*) from repair where status = 0
+    </select>
+    <select id="getAllShowRepairs" resultType="com.zhumeijia.wuye.bean.Repair" parameterType="int">
+        select * from repair where status = 0
+    </select>
+    <select id="getCountByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from repair where uid = #{uid}
+    </select>
+    <select id="getAllRepairsByUser" resultType="com.zhumeijia.wuye.bean.Repair">
+        select * from repair where uid = #{uid} limit #{page},#{limit}
+    </select>
+</mapper>
+

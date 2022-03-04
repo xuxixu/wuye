@@ -23,7 +23,7 @@ public class RoomDao {
                 new BeanPropertyRowMapper(Room.class));
         if (list!=null){
             for (Room room:list){
-                List<Danyuan> danyuan = template.query("select * from danyuan where id = ?" ,new Object[]{room.getDanyuan_id()},
+                List<Danyuan> danyuan = template.query("select * from danyuan where id = ?" ,new Object[]{room.getDid()},
                         new BeanPropertyRowMapper(Danyuan.class));
                 room.setDanyuan(danyuan.get(0));
             }
@@ -35,12 +35,12 @@ public class RoomDao {
 
     public int addRoom(Room room) {
         return template.update("insert into room values(null,?,?,0,?)",
-                room.getName(),room.getArea(),room.getDanyuan_id());
+                room.getName(),room.getArea(),room.getDid());
     }
 
     public int updateRoom(Room room) {
-        return template.update("update room set `name` = ? ,`area` = ? ,`danyuan_id` = ? where id = ?",
-                room.getName(),room.getArea(),room.getDanyuan_id(),room.getId());
+        return template.update("update room set `name` = ? ,`area` = ? ,`did` = ? where id = ?",
+                room.getName(),room.getArea(),room.getDid(),room.getId());
     }
 
     public int delRoom(int id) {
@@ -52,7 +52,7 @@ public class RoomDao {
                 new BeanPropertyRowMapper(Room.class));
         if (list!=null){
             for (Room room:list){
-                List<Danyuan> danyuan = template.query("select * from danyuan where id = ?" ,new Object[]{room.getDanyuan_id()},
+                List<Danyuan> danyuan = template.query("select * from danyuan where id = ?" ,new Object[]{room.getDid()},
                         new BeanPropertyRowMapper(Danyuan.class));
                 room.setDanyuan(danyuan.get(0));
             }
@@ -68,7 +68,7 @@ public class RoomDao {
     }
 
     public List<Room> getAllFreeRooms(int danyuan_id) {
-        List<Room> list = template.query("select * from room where status = 0 and danyuan_id = " +danyuan_id,
+        List<Room> list = template.query("select * from room where status = 0 and did = " +danyuan_id,
                 new BeanPropertyRowMapper(Room.class));
         if (list!=null){
             return list;

@@ -47,7 +47,7 @@ public class RepairController {
         ResBody resBody = new ResBody();
         User user = (User) session.getAttribute("user");
         if (user!=null){
-            repair.setUser_id(user.getId());
+            repair.setUid(user.getId());
         }
         int i = service.addRepair(repair);
         if (i == 1){

@@ -46,8 +46,11 @@ public class AdoptionDao {
         List<Adoption> p = getAdoptionById(id);
         List<Goods> good = goodsDao.getGoodsByName(p.get(0).getGname());
         if(good.get(0).getNumber()<p.get(0).getNumber()) return -1;
-        good.get(0).setNumber(good.get(0).getNumber()-p.get(0).getNumber());
-        goodsDao.updateNumberByName(good.get(0).getNumber(),good.get(0).getName());
+        if (good.get(0).getNumber()-p.get(0).getNumber() == 0) goodsDao.delGoods(good.get(0).getId());
+        else {
+            good.get(0).setNumber(good.get(0).getNumber() - p.get(0).getNumber());
+            goodsDao.updateNumberByName(good.get(0).getNumber(), good.get(0).getName());
+        }
 
         return template.update("update adoption set status = 1 where id = ?", id);
     }

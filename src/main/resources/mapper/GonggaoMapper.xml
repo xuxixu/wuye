@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.GonggaoMapper">
+    <insert id="addGonggao" parameterType="com.zhumeijia.wuye.bean.Gonggao">
+        insert into gonggao values(null,#{title},#{content},#{createBy},#{createTime},#{updateBy},#{updateTime},#{status})
+    </insert>
+    <update id="updateGonggao" parameterType="com.zhumeijia.wuye.bean.Gonggao">
+        update gonggao set `title` = #{title} ,`content` = #{content} ,`status` = #{status},`updateBy` = #{updateBy} ,`updateTime` = #{updateTime} where id = #{id}
+    </update>
+    <delete id="delGonggao" parameterType="int">
+        DELETE from gonggao where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from gonggao
+    </select>
+    <select id="getAllGonggao" resultType="com.zhumeijia.wuye.bean.Gonggao">
+        select * from gonggao limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from gonggao where title like #{title}
+    </select>
+    <select id="findGonggao" resultType="com.zhumeijia.wuye.bean.Gonggao">
+        select * from gonggao where title like #{title} limit #{page},#{limit}
+    </select>
+    <select id="getAllGonggaos" resultType="com.zhumeijia.wuye.bean.Gonggao">
+        select * from gonggao
+    </select>
+    <select id="getFreeCount" resultType="java.lang.Integer">
+        select count(*) from gonggao where status = 0
+    </select>
+    <select id="getAllShowGonggaos" resultType="com.zhumeijia.wuye.bean.Gonggao" parameterType="int">
+        select * from gonggao where status = 0
+    </select>
+</mapper>
+

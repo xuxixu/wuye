@@ -125,6 +125,11 @@ public class IndexController {
     public String goodstype(){
         return "page/template/goodstype";
     }
+    @GetMapping("/gonggao")
+
+    public String gonggao(){
+        return "page/template/gonggao";
+    }
 
     @GetMapping("/warehouse")
     public String warehouse(){

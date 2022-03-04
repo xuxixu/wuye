@@ -1,7 +1,7 @@
 package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Building;
-import com.zhumeijia.wuye.dao.BuildingDao;
+import com.zhumeijia.wuye.mapper.BuildingMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public class BuildingService {
     @Autowired
-    BuildingDao dao;
+    BuildingMapper dao;
     public int getCount() {
-        return dao.getCount();
+        return dao.getCountAll();
     }
 
     public List<Building> getAllBuildings(int page, int limit) {
-        return dao.getAllBuildings(page,limit);
+        return dao.getAllBuilding((page-1)*limit,limit);
     }
 
     public int addBuilding(Building building) {
@@ -32,11 +32,11 @@ public class BuildingService {
     }
 
     public int getCount(String name) {
-        return dao.getCount(name);
+        return dao.getCountByName(name);
     }
 
     public List<Building> findBuilding(int page, int limit, String name) {
-        return dao.findBuilding(page,limit,name);
+        return dao.findBuilding((page-1)*limit,limit,name);
     }
 
     public List<Building> getAllBuildings() {

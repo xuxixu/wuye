@@ -1,7 +1,7 @@
 package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Payment;
-import com.zhumeijia.wuye.dao.PaymentDao;
+import com.zhumeijia.wuye.mapper.PaymentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,13 +10,13 @@ import java.util.List;
 @Service
 public class PaymentService {
     @Autowired
-    PaymentDao dao;
+    PaymentMapper dao;
     public int getCount() {
-        return dao.getCount();
+        return dao.getCountAll();
     }
 
     public List<Payment> getAllPayments(int page, int limit) {
-        return dao.getAllPayments(page,limit);
+        return dao.getAllPayment((page-1)*limit,limit);
     }
 
     public int addPayment(Payment payment) {
@@ -32,11 +32,11 @@ public class PaymentService {
     }
 
     public int getCount(String name) {
-        return dao.getCount(name);
+        return dao.getCountByName(name);
     }
 
     public List<Payment> findPayment(int page, int limit, String name) {
-        return dao.findPayment(page,limit,name);
+        return dao.findPayment((page-1)*limit,limit,name);
     }
 
     public List<Payment> getAllPayments() {

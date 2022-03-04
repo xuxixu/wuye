@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.RoomMapper">
+    <insert id="addRoom" parameterType="com.zhumeijia.wuye.bean.Room">
+        insert into room values(null,#{name},#{area},0,#{danyuan_id})
+    </insert>
+    <update id="updateRoom" parameterType="com.zhumeijia.wuye.bean.Room">
+        update room set `name` = #{name} ,`area` = #{area} ,`did` = #{danyuan_id} where id = #{id}
+    </update>
+    <delete id="delRoom" parameterType="int">
+        DELETE from room where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from room
+    </select>
+    <select id="getAllRoom" resultType="com.zhumeijia.wuye.bean.Room">
+        select * from room limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from room where name like #{name}
+    </select>
+    <select id="findRoom" resultType="com.zhumeijia.wuye.bean.Room">
+        select * from room where name like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllRooms" resultType="com.zhumeijia.wuye.bean.Room">
+        select * from room
+    </select>
+    <select id="getFreeCount" resultType="java.lang.Integer">
+        select count(*) from room where status = 0
+    </select>
+    <select id="getAllFreeRoom" resultType="com.zhumeijia.wuye.bean.Room" parameterType="int">
+        select * from room where status = 0 and did = #{danyuan_id}
+    </select>
+</mapper>
+

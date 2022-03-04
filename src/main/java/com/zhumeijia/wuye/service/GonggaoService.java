@@ -1,8 +1,12 @@
 package com.zhumeijia.wuye.service;
 
+import com.zhumeijia.wuye.bean.Admin;
 import com.zhumeijia.wuye.bean.Gonggao;
 import com.zhumeijia.wuye.dao.GonggaoDao;
+import com.zhumeijia.wuye.mapper.AdminMapper;
+import com.zhumeijia.wuye.mapper.GonggaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -10,13 +14,28 @@ import java.util.List;
 @Service
 public class GonggaoService {
     @Autowired
-    GonggaoDao dao;
+    GonggaoMapper dao;
+    @Autowired
+    AdminMapper adao;
     public int getCount() {
-        return dao.getCount();
+        return dao.getCountAll();
     }
 
     public List<Gonggao> getAllGonggaos(int page, int limit) {
-        return dao.getAllGonggaos(page,limit);
+        List<Gonggao> list = dao.getAllGonggao((page - 1) * limit, limit);
+        if (list!=null){
+            for (Gonggao gonggao:list){
+                List<Admin> admin = adao.findAdminById(gonggao.getCreateBy());
+                gonggao.setCreate_admin(admin.get(0));
+                if (gonggao.getUpdateBy()!=null){
+                    List<Admin> admins = adao.findAdminById(gonggao.getUpdateBy());
+                    gonggao.setUpdate_admin(admins.get(0));
+                }
+            }
+            return list;
+        }else{
+            return null;
+        }
     }
 
     public int addGonggao(Gonggao gonggao) {
@@ -32,15 +51,28 @@ public class GonggaoService {
     }
 
     public int getCount(String name) {
-        return dao.getCount(name);
+        return dao.getCountByName(name);
     }
 
     public List<Gonggao> findGonggao(int page, int limit, String name) {
-        return dao.findGonggao(page,limit,name);
+        List<Gonggao> list = dao.findGonggao((page-1)*limit, limit, name);
+        if (list!=null){
+            for (Gonggao gonggao:list){
+                List<Admin> admin = adao.findAdminById(gonggao.getCreateBy());
+                gonggao.setCreate_admin(admin.get(0));
+                if (gonggao.getUpdateBy()!=null){
+                    List<Admin> admins = adao.findAdminById(gonggao.getUpdateBy());
+                    gonggao.setUpdate_admin(admins.get(0));
+                }
+            }
+            return list;
+        }else{
+            return null;
+        }
     }
 
     public Gonggao getGonggao() {
-        return dao.getGonggao();
+        return dao.getAllGonggaos().get(0);
     }
 
     public List<Gonggao> getAllShowGonggaos() {

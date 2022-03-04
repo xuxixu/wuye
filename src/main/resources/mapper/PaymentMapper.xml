@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.PaymentMapper">
+    <insert id="addPayment" parameterType="com.zhumeijia.wuye.bean.Payment">
+        insert into Payment values(null,#{name})
+    </insert>
+    <update id="updatePayment" parameterType="com.zhumeijia.wuye.bean.Payment">
+        update Payment set name = #{name} where id = #{id}
+    </update>
+    <delete id="delPayment" parameterType="int">
+        DELETE from Payment where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from Payment
+    </select>
+    <select id="getAllPayment" resultType="com.zhumeijia.wuye.bean.Payment">
+        select * from Payment limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from Payment where name like #{name}
+    </select>
+    <select id="findPayment" resultType="com.zhumeijia.wuye.bean.Payment">
+        select * from Payment where name like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllPayments" resultType="com.zhumeijia.wuye.bean.Payment">
+        select * from Payment
+    </select>
+</mapper>
+

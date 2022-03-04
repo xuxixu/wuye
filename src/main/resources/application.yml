@@ -21,7 +21,6 @@ spring:
     prefix: classpath:/templates/
     suffix:  .html
 
-
   datasource:
     url: jdbc:mysql://127.0.0.1:3306/wuye?charset=utf8mb4&useSSL=false
     username: root
@@ -44,3 +43,24 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+
+#mybatisPlu
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*Mapper.xml
+  typeAliasesPackage: com.zhumeijia.wuye.bean
+  global-config:
+    db-config:
+      #主键类型  AUTO:"数据库ID自增", INPUT:"用户输入ID",ID_WORKER:"全局唯一ID (数字类型唯一ID)", UUID:"全局唯一ID UUID";
+      id-type: UUID
+      #字段策略 IGNORED:"忽略判断",NOT_NULL:"非 NULL 判断"),NOT_EMPTY:"非空判断"
+      field-strategy: not_empty
+      #驼峰下划线转换
+      column-underline: true
+      db-type: mysql
+    #刷新mapper
+    refresh-mapper: true
+  #原生配置
+  configuration:
+    #开启驼峰功能
+    map-underscore-to-camel-case: true
+    cache-enabled: false

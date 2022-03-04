@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.UserMapper">
+    <insert id="addUser" parameterType="com.zhumeijia.wuye.bean.User">
+        insert into user values(null,#{name},#{building_id})
+    </insert>
+    <update id="updateUser" parameterType="com.zhumeijia.wuye.bean.User">
+        update user set username = #{name}  where id = #{id}
+    </update>
+    <delete id="delUser" parameterType="int">
+        DELETE from user where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from user
+    </select>
+    <select id="getAllUser" resultType="com.zhumeijia.wuye.bean.User">
+        select * from user limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from user where username like #{name}
+    </select>
+    <select id="findUser" resultType="com.zhumeijia.wuye.bean.User">
+        select * from user where username like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllUsers" resultType="com.zhumeijia.wuye.bean.User">
+        select * from user
+    </select>
+    <select id="findUserById" resultType="com.zhumeijia.wuye.bean.User" parameterType="int">
+        select * from user where id = #{id}
+    </select>
+</mapper>
+

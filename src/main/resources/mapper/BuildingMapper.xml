@@ -1,0 +1,35 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.BuildingMapper">
+    <insert id="addBuilding" parameterType="com.zhumeijia.wuye.bean.Building">
+        insert into building values(null,#{name},#{type})
+    </insert>
+    <update id="updateBuilding" parameterType="com.zhumeijia.wuye.bean.Building">
+        update building set name = #{name}, type = #{type} where id = #{id}
+    </update>
+    <delete id="delBuilding" parameterType="int">
+        DELETE from building where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from building
+    </select>
+    <select id="getAllBuilding" resultType="com.zhumeijia.wuye.bean.Building">
+        select * from building limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from building where name like #{name}
+    </select>
+    <select id="findBuilding" resultType="com.zhumeijia.wuye.bean.Building">
+        select * from building where name like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllBuildings" resultType="com.zhumeijia.wuye.bean.Building">
+        select * from building
+    </select>
+    <select id="findBuildingByBuildingId" resultType="com.zhumeijia.wuye.bean.Building"
+            parameterType="java.lang.Integer">
+        select * from building where id = #{id}
+    </select>
+</mapper>
+

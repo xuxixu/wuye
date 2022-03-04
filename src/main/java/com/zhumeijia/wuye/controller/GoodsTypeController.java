@@ -86,6 +86,7 @@ public class GoodsTypeController {
     public ResBody getAllGoodstypes() {
         ResBody resBody = new ResBody();
         List<Goodstype> list= service.getAllGoodstypes();
+
         resBody.setData(list);
         resBody.setCode(0);
         return resBody;

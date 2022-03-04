@@ -3,6 +3,7 @@ package com.zhumeijia.wuye.service;
 import com.zhumeijia.wuye.bean.Building;
 import com.zhumeijia.wuye.bean.Car;
 import com.zhumeijia.wuye.dao.CarDao;
+import com.zhumeijia.wuye.mapper.CarMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,13 +12,13 @@ import java.util.List;
 @Service
 public class CarService {
     @Autowired
-    CarDao dao;
+    CarMapper dao;
     public int getCount() {
-        return dao.getCount();
+        return dao.getCountAll();
     }
 
     public List<Car> getAllCars(int page, int limit) {
-        return dao.getAllCars(page,limit);
+        return dao.getAllCar((page - 1) * limit,limit);
     }
 
     public int addCar(Car car) {
@@ -33,15 +34,15 @@ public class CarService {
     }
 
     public int getCount(String name) {
-        return dao.getCount(name);
+        return dao.getCountByName(name);
     }
 
     public List<Car> findCar(int page, int limit, String name) {
-        return dao.findCar(page,limit,name);
+        return dao.findCar((page - 1) * limit,limit,name);
     }
 
     public List<Car> getAllFreeCars(int type) {
-        return dao.getAllFreeCars(type);
+        return dao.getAllFreeCar(type);
     }
 
     public int getFreeCount() {

@@ -25,7 +25,7 @@ public class RepairDao {
         if (list!=null){
             for (Repair repair:list){
                 List<User> users = template.query("select * from user where id = ?" ,
-                        new Object[]{repair.getUser_id()}, new BeanPropertyRowMapper(User.class));
+                        new Object[]{repair.getUid()}, new BeanPropertyRowMapper(User.class));
                 repair.setUser(users.get(0));
             }
             return list;
@@ -36,7 +36,7 @@ public class RepairDao {
 
     public int addRepair(Repair repair) {
         return template.update("insert into repair values(null,?,?,?,?,?)",
-                repair.getContent(),repair.getUser_id(),0,new Date(),repair.getResult());
+                repair.getContent(),repair.getUid(),0,new Date(),repair.getResult());
 
     }
 
@@ -60,7 +60,7 @@ public class RepairDao {
         if (list!=null){
             for (Repair repair:list){
                 List<User> users = template.query("select * from user where id = ?" ,
-                        new Object[]{repair.getUser_id()}, new BeanPropertyRowMapper(User.class));
+                        new Object[]{repair.getUid()}, new BeanPropertyRowMapper(User.class));
                 repair.setUser(users.get(0));
             }
             return list;
@@ -70,12 +70,12 @@ public class RepairDao {
     }
 
     public int getCountByUserId(Integer id) {
-        int count = template.queryForObject("select count(*) from repair where user_id = "+id, Integer.class);
+        int count = template.queryForObject("select count(*) from repair where uid = "+id, Integer.class);
         return count;
     }
 
     public List<Repair> getAllRepairsByUser(int page, int limit, Integer id) {
-        List<Repair> list = template.query("select * from repair where user_id = ? limit ?,?" ,new Object[]{id,(page-1)*limit,limit},
+        List<Repair> list = template.query("select * from repair where uid = ? limit ?,?" ,new Object[]{id,(page-1)*limit,limit},
                 new BeanPropertyRowMapper(Repair.class));
         if (!list.isEmpty()){
             return list;

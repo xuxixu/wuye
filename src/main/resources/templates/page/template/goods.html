@@ -68,23 +68,17 @@
             <div class="layui-input-block">
                 <select name="gtid" lay-verify="required">
                     <option value="">请选择供物料类型</option>
-                    <option value="1">办公用品</option>
-                    <option value="2">楼梯房</option>
-					<option value="3">保洁</option>
-					<option value="4">水暖</option>
                 </select>
             </div>
         </div>
-		<div class="layui-form-item">
-		    <label class="layui-form-label">仓库</label>
-		    <div class="layui-input-block">
-		        <select name="whid" lay-verify="required">
-		            <option value="">请选择仓库</option>
-		            <option value="1">应急物资储备库</option>
-		            <option value="2">工程部备件仓库</option>
-		        </select>
-		    </div>
-		</div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">仓库</label>
+            <div class="layui-input-block">
+                <select name="whid" lay-verify="required">
+                    <option value="">请选择仓库</option>
+                </select>
+            </div>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">数量</label>
             <div class="layui-input-block">
@@ -102,6 +96,29 @@
         <div class="layui-form-item text-right">
             <button class="layui-btn layui-btn-primary" type="button" ew-event="closePageDialog">取消</button>
             <button class="layui-btn" lay-filter="modelSubmitBook" lay-submit>保存</button>
+        </div>
+    </form>
+</script>
+<script type="text/html" id="modelAdoption">
+    <form id="modelAdoptionForm" lay-filter="modelAdoptionForm" class="layui-form model-form">
+        <input name="id" type="hidden"/>
+        <div class="layui-form-item">
+        <label class="layui-form-label">物料名</label>
+            <div class="layui-input-block">
+                <input name="name" placeholder="请输入物料名" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数量</label>
+            <div class="layui-input-block">
+                <input name="number" placeholder="请输入数量" type="text" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="required" required/>
+            </div>
+        </div>
+        <div class="layui-form-item text-right">
+            <button class="layui-btn layui-btn-primary" type="button" ew-event="closePageDialog">取消</button>
+            <button class="layui-btn" lay-filter="modelSubmitAdoption" lay-submit>保存</button>
         </div>
     </form>
 </script>
@@ -140,9 +157,9 @@
                     {field: 'id', title: 'id'}
                     ,{field: 'name', sort: true, title: '货物名'}
                     ,{field: 'number',sort:true, title: '货物数量'}
-					,{field: 'warehouse', sort: true, templet: '#building_2', title: '仓库'}
-					,{field: 'goodstype', sort: true, templet: '#building_3', title: '货物类型'}
-					,{field: 'prices', sort: true, title: '价格'}
+                    ,{field: 'warehouse', sort: true, templet: '#building_2', title: '仓库'}
+                    ,{field: 'goodstype', sort: true, templet: '#building_3', title: '货物类型'}
+                    ,{field: 'prices', sort: true, title: '价格'}
                     ,{align: 'center', toolbar: '#tableBarBook', title: '操作', minWidth: 200}
                 ]
             ]
@@ -177,6 +194,38 @@
                     title: '增加申请',
                     content: $('#modelBook').html(),
                     success: function (layero, dIndex) {
+                        var option="";
+                        $.ajax({
+                            url: '/ajax/getAllGoodstypes',
+                            dataType: 'json',
+                            type: 'get',
+                            async:false,
+                            success: function (res) {
+                                if (res.code == 0){
+                                    for(var i in res.data){
+                                        option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
+                                    }
+                                }
+                                $("[name='gtid']").append(option);
+                                form.render()
+                            }
+                        })
+                        option = "";
+                        $.ajax({
+                            url: '/ajax/getAllWarehouses',
+                            dataType: 'json',
+                            type: 'get',
+                            async:false,
+                            success: function (res) {
+                                if (res.code == 0){
+                                    for(var i in res.data){
+                                        option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
+                                    }
+                                }
+                                $("[name='whid']").append(option);
+                                form.render()
+                            }
+                        })
                         $(layero).children('.layui-layer-content').css('overflow', 'visible');
                         var url = '/api/shenqing';
                         // 回显数据
@@ -209,15 +258,15 @@
                 admin.open({
                     type: 1,
                     title: '申请使用',
-                    content: $('#modelBook').html(),
+                    content: $('#modelAdoption').html(),
                     success: function (layero, dIndex) {
                         $(layero).children('.layui-layer-content').css('overflow', 'visible');
                         var url = '/api/caiyong';
                         //mBook && (mBook.roleId = mUser.roles[0].roleId);
                         // 回显数据
-                        form.val('modelBookForm', mBook);
+                        form.val('modelAdoptionForm', mBook);
                         // 表单提交事件
-                        form.on('submit(modelSubmitBook)', function (data) {
+                        form.on('submit(modelSubmitAdoption)', function (data) {
                             layer.load(2);
                             $.ajax({
                                 url:url,

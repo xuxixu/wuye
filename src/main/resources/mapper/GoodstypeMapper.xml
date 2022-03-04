@@ -1,0 +1,31 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.GoodstypeMapper">
+    <insert id="addGoodstype" parameterType="com.zhumeijia.wuye.bean.Goodstype">
+        insert into goodstype values(null,#{name},#{remark})
+    </insert>
+    <update id="updateGoodstype" parameterType="com.zhumeijia.wuye.bean.Goodstype">
+        update goodstype set name = #{name}, remark = #{remark} where id = #{id}
+    </update>
+    <delete id="delGoodstype" parameterType="int">
+        DELETE from goodstype where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from goodstype
+    </select>
+    <select id="getAllGoodstype" resultType="com.zhumeijia.wuye.bean.Goodstype">
+        select * from goodstype limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from goodstype where name like #{name}
+    </select>
+    <select id="findGoodstype" resultType="com.zhumeijia.wuye.bean.Goodstype">
+        select * from goodstype where name like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllGoodstypes" resultType="com.zhumeijia.wuye.bean.Goodstype">
+        select * from goodstype
+    </select>
+</mapper>
+

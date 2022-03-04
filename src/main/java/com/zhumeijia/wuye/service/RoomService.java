@@ -2,9 +2,11 @@ package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Danyuan;
 import com.zhumeijia.wuye.bean.Room;
-import com.zhumeijia.wuye.dao.DanyuanDao;
 import com.zhumeijia.wuye.dao.RoomDao;
+import com.zhumeijia.wuye.mapper.DanyuanMapper;
+import com.zhumeijia.wuye.mapper.RoomMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,13 +14,25 @@ import java.util.List;
 @Service
 public class RoomService {
     @Autowired
-    RoomDao dao;
+    RoomMapper dao;
+    @Autowired
+    DanyuanMapper ddao;
+
     public int getCount() {
-        return dao.getCount();
+        return dao.getCountAll();
     }
 
     public List<Room> getAllRooms(int page, int limit) {
-        return dao.getAllRooms(page,limit);
+        List<Room> list = dao.getAllRoom((page - 1) * limit, limit);
+        if (list!=null){
+            for (Room room:list){
+                List<Danyuan> danyuan = ddao.findDanyuanById(room.getDid());
+                room.setDanyuan(danyuan.get(0));
+            }
+            return list;
+        }else{
+            return null;
+        }
     }
 
     public int addRoom(Room room) {
@@ -34,15 +48,24 @@ public class RoomService {
     }
 
     public List<Room> findRoom(int page, int limit, String name) {
-        return dao.findRoom(page,limit,name);
+        List<Room> list = dao.findRoom((page - 1) * limit, limit, name);
+        if (list!=null){
+            for (Room room:list){
+                List<Danyuan> danyuan = ddao.findDanyuanById(room.getDid());
+                room.setDanyuan(danyuan.get(0));
+            }
+            return list;
+        }else{
+            return null;
+        }
     }
 
     public int getCount(String name) {
-        return dao.getCount(name);
+        return dao.getCountByName(name);
     }
 
     public List<Room> getAllFreeRooms(int danyuan_id) {
-        return dao.getAllFreeRooms(danyuan_id);
+        return dao.getAllFreeRoom(danyuan_id);
     }
 
     public int getFreeCount() {

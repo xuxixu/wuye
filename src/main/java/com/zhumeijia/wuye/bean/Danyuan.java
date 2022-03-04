@@ -10,6 +10,6 @@ import lombok.NoArgsConstructor;
 public class Danyuan {
     Integer id;
     String name;
-    Integer building_id;
+    int bid;
     Building building;
 }

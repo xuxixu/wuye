@@ -1,0 +1,37 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.CarMapper">
+    <insert id="addCar" parameterType="com.zhumeijia.wuye.bean.Car">
+        insert into car values(null,#{name},#{type},0)
+    </insert>
+    <update id="updateCar" parameterType="com.zhumeijia.wuye.bean.Car">
+        update car set `name` = #{name} ,`type` = #{type}  where id = #{id}
+    </update>
+    <delete id="delCar" parameterType="int">
+        DELETE from car where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from car
+    </select>
+    <select id="getAllCar" resultType="com.zhumeijia.wuye.bean.Car">
+        select * from car limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from car where name like #{name}
+    </select>
+    <select id="findCar" resultType="com.zhumeijia.wuye.bean.Car">
+        select * from car where name like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllCars" resultType="com.zhumeijia.wuye.bean.Car">
+        select * from car
+    </select>
+    <select id="getFreeCount" resultType="java.lang.Integer">
+        select count(*) from car where status = 0
+    </select>
+    <select id="getAllFreeCar" resultType="com.zhumeijia.wuye.bean.Car" parameterType="int">
+        select * from car where status = 0 and type = #{type}
+    </select>
+</mapper>
+
