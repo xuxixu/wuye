@@ -14,9 +14,9 @@ public class AdminDao {
     @Autowired
     JdbcTemplate template;
 
-    public Admin findAdmin(String email, String password) {
-        List<Admin> list = template.query("select * from admin where email = ? && password = ?" ,
-                new Object[]{email,password}, new BeanPropertyRowMapper(Admin.class));
+    public Admin findAdmin(String username, String password) {
+        List<Admin> list = template.query("select * from admin where username = ? && password = ?" ,
+                new Object[]{username,password}, new BeanPropertyRowMapper(Admin.class));
         if (list!=null && list.size()>0){
             return list.get(0);
         }else{

@@ -80,7 +80,7 @@ public class UserDao {
     }
 
     public User loginByPassword(String phone, String password) {
-        List<User> list = template.query("select * from `user` where phone = ? and password = ?" ,new Object[]{phone,password},
+        List<User> list = template.query("select * from `user` where username = ? and password = ?" ,new Object[]{phone,password},
                 new BeanPropertyRowMapper(User.class));
         if (list!=null){
             return list.get(0);

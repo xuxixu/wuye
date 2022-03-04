@@ -10,8 +10,8 @@ public class AdminService {
     @Autowired
     AdminDao dao;
 
-    public Admin findAdmin(String email, String password) {
-        return dao.findAdmin(email,password);
+    public Admin findAdmin(String username, String password) {
+        return dao.findAdmin(username,password);
     }
 
     public int updatePass(int id, String newPsw) {

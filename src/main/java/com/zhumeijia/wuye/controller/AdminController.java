@@ -26,9 +26,10 @@ public class AdminController {
     public ResBody loginByPassword(@RequestBody Map<String, Object> params,
                                    HttpSession session) {
         ResBody resBody = new ResBody();
-        String email = params.get("email").toString();
+        String username = params.get("username").toString();
         String password = params.get("password").toString();
-        Admin admin = service.findAdmin(email,password);
+        System.out.println(username);
+        Admin admin = service.findAdmin(username,password);
         if (admin == null){
             resBody.setCode(500);
             resBody.setMsg("登录失败，请重新登录");
