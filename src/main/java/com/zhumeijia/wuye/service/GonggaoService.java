@@ -2,7 +2,6 @@ package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Admin;
 import com.zhumeijia.wuye.bean.Gonggao;
-import com.zhumeijia.wuye.dao.GonggaoDao;
 import com.zhumeijia.wuye.mapper.AdminMapper;
 import com.zhumeijia.wuye.mapper.GonggaoMapper;
 import org.springframework.beans.factory.annotation.Autowired;

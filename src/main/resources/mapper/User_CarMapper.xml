@@ -1,0 +1,29 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.User_CarMapper">
+    <insert id="fenpei">
+        insert into user_car values(null,#{user_id},#{car_id},#{date},null)
+    </insert>
+    <update id="updateUser_CarByUid">
+        update user_car set `outTime` = #{date} where user_id = #{uid} and outTime is null
+    </update>
+
+
+    <select id="getCarRecordCount" resultType="java.lang.Integer">
+        select count(*) from `user_car` where car_id = #{rid}
+    </select>
+    <select id="findCarRecordById" resultType="com.zhumeijia.wuye.bean.User_Car">
+        select * from `user_car` where car_id = #{id} limit #{i},#{limit}
+    </select>
+    <select id="findCar" resultType="java.lang.Integer">
+        SELECT count(*) FROM user_car where user_id = #{user_id} and outTime is null
+    </select>
+    <select id="outCar" resultType="com.zhumeijia.wuye.bean.User_Car">
+        select * from `user_car` where user_id = #{user_id} and  outTime is null
+    </select>
+    <select id="findCarByUid" resultType="com.zhumeijia.wuye.bean.User_Car">
+        select * from `user_car` where user_id = #{id} and  outTime is null
+    </select>
+</mapper>
+

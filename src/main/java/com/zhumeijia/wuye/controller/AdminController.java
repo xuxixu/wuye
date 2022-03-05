@@ -28,7 +28,6 @@ public class AdminController {
         ResBody resBody = new ResBody();
         String username = params.get("username").toString();
         String password = params.get("password").toString();
-        System.out.println(username);
         Admin admin = service.findAdmin(username,password);
         if (admin == null){
             resBody.setCode(500);

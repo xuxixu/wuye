@@ -25,7 +25,7 @@
         select count(*) from goods where name like #{name}
     </select>
     <select id="findGoods" resultType="com.zhumeijia.wuye.bean.Goods">
-        select * from goods where name like #{name} limit #{page},#{limit}
+        select * from goods where name like '%${name}%' limit #{page},#{limit}
     </select>
     <select id="getAllGoodss" resultType="com.zhumeijia.wuye.bean.Goods">
         select * from goods

@@ -19,10 +19,10 @@
         select * from repair limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from repair where status like #{status}
+        select count(*) from repair where status like #{name}
     </select>
     <select id="findRepair" resultType="com.zhumeijia.wuye.bean.Repair">
-        select * from repair where status like #{status} limit #{page},#{limit}
+        select * from repair where status like #{name} limit #{page},#{limit}
     </select>
     <select id="getAllRepairs" resultType="com.zhumeijia.wuye.bean.Repair">
         select * from repair

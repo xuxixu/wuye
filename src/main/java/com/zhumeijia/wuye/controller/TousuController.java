@@ -47,7 +47,7 @@ public class TousuController {
         ResBody resBody = new ResBody();
         User user = (User) session.getAttribute("user");
         if (user!=null){
-            tousu.setUser_id(user.getId());
+            tousu.setUid(user.getId());
         }
         int i = service.addTousu(tousu);
         if (i == 1){

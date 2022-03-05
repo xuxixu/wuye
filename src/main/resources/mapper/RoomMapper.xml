@@ -8,6 +8,12 @@
     <update id="updateRoom" parameterType="com.zhumeijia.wuye.bean.Room">
         update room set `name` = #{name} ,`area` = #{area} ,`did` = #{danyuan_id} where id = #{id}
     </update>
+    <update id="updateRoomById">
+        update room set `status` = 0 where id = #{id}
+    </update>
+    <update id="updateRoomByIdI">
+        update room set `status` = 1 where id = #{id}
+    </update>
     <delete id="delRoom" parameterType="int">
         DELETE from room where id=#{id}
     </delete>
@@ -19,10 +25,10 @@
         select * from room limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from room where name like #{name}
+        select count(*) from room where status like #{name}
     </select>
     <select id="findRoom" resultType="com.zhumeijia.wuye.bean.Room">
-        select * from room where name like #{name} limit #{page},#{limit}
+        select * from room where  status like #{name} limit #{page},#{limit}
     </select>
     <select id="getAllRooms" resultType="com.zhumeijia.wuye.bean.Room">
         select * from room
@@ -32,6 +38,12 @@
     </select>
     <select id="getAllFreeRoom" resultType="com.zhumeijia.wuye.bean.Room" parameterType="int">
         select * from room where status = 0 and did = #{danyuan_id}
+    </select>
+    <select id="findRoomByUid" resultType="com.zhumeijia.wuye.bean.Room">
+        SELECT room.id,room.name,room.did,room.`status` FROM room,user,user_room WHERE room.id = user_room.room_id and user_room.user_id = user.id and user_room.outTime is NULL and user_id = #{id}
+    </select>
+    <select id="findRoomByid" resultType="com.zhumeijia.wuye.bean.Room">
+        select * from `room` where id = #{id}
     </select>
 </mapper>
 

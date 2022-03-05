@@ -22,7 +22,7 @@
         select count(*) from warehouse where name like #{name}
     </select>
     <select id="findWarehouse" resultType="com.zhumeijia.wuye.bean.Warehouse">
-        select * from warehouse where name like #{name} limit #{page},#{limit}
+        select * from warehouse where name like '%${name}%' limit #{page},#{limit}
     </select>
     <select id="getAllWarehouses" resultType="com.zhumeijia.wuye.bean.Warehouse">
         select * from warehouse

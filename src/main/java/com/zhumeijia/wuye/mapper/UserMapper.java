@@ -18,4 +18,12 @@ public interface UserMapper {
     public List<User> getAllUsers();
 
     List<User> findUserById(int id);
+
+    User loginByPassword(String phone, String password);
+
+    int updatePass(Integer id, String newPsw);
+
+    User getUserById(Integer id);
+
+    int findUserByPhone(String phone);
 }

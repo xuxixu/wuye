@@ -3,10 +3,13 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhumeijia.wuye.mapper.UserMapper">
     <insert id="addUser" parameterType="com.zhumeijia.wuye.bean.User">
-        insert into user values(null,#{name},#{building_id})
+        insert into `user` values(null,#{username},'123456',#{phone},#{sex},1)
     </insert>
     <update id="updateUser" parameterType="com.zhumeijia.wuye.bean.User">
         update user set username = #{name}  where id = #{id}
+    </update>
+    <update id="updatePass">
+        update `user` set `password` = #{newPsw} where id = #{id}
     </update>
     <delete id="delUser" parameterType="int">
         DELETE from user where id=#{id}
@@ -19,16 +22,25 @@
         select * from user limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from user where username like #{name}
+        select count(*) from user where username like '%${name}%'
     </select>
     <select id="findUser" resultType="com.zhumeijia.wuye.bean.User">
-        select * from user where username like #{name} limit #{page},#{limit}
+        select * from user where username like '%${name}%' limit #{page},#{limit}
     </select>
     <select id="getAllUsers" resultType="com.zhumeijia.wuye.bean.User">
         select * from user
     </select>
     <select id="findUserById" resultType="com.zhumeijia.wuye.bean.User" parameterType="int">
         select * from user where id = #{id}
+    </select>
+    <select id="loginByPassword" resultType="com.zhumeijia.wuye.bean.User">
+        select * from `user` where username = #{phone} and password = #{password}
+    </select>
+    <select id="getUserById" resultType="com.zhumeijia.wuye.bean.User">
+        select * from `user` where id = #{id}
+    </select>
+    <select id="findUserByPhone" resultType="java.lang.Integer">
+        select * from `user` where phone = #{phone}
     </select>
 </mapper>
 

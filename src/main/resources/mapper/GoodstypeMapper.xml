@@ -2,6 +2,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhumeijia.wuye.mapper.GoodstypeMapper">
+
     <insert id="addGoodstype" parameterType="com.zhumeijia.wuye.bean.Goodstype">
         insert into goodstype values(null,#{name},#{remark})
     </insert>
@@ -21,14 +22,14 @@
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
         select count(*) from goodstype where name like #{name}
     </select>
-    <select id="findGoodstype" resultType="com.zhumeijia.wuye.bean.Goodstype">
-        select * from goodstype where name like #{name} limit #{page},#{limit}
-    </select>
     <select id="getAllGoodstypes" resultType="com.zhumeijia.wuye.bean.Goodstype">
         select * from goodstype
     </select>
     <select id="findGoodstypeById" resultType="com.zhumeijia.wuye.bean.Goodstype">
         select * from goodstype where id = #{gtid}
+    </select>
+    <select id="findGoodstype" resultType="com.zhumeijia.wuye.bean.Goodstype">
+        select * from goodstype where name like '%${name}%'
     </select>
 </mapper>
 

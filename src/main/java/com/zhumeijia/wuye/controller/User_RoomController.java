@@ -51,6 +51,7 @@ public class User_RoomController {
         if (count == 1){
             service.outRoom(user_room.getUser_id());
         }
+        System.out.println(user_room);
         int i = service.fenpei(user_room.getUser_id(),user_room.getRoom_id());
         if (i == 1){
             resBody.setCode(200);

@@ -13,11 +13,11 @@ public interface RepairMapper {
     public int addRepair(Repair repair);
     public int updateRepair(Repair repair);
     public int delRepair(@Param("id") int id);
-    public int getCountByName(@Param("title")String title);
-    public List<Repair> findRepair(@Param("page") int page,@Param("limit") int limit,@Param("title") String title);
+    public int getCountByName(@Param("name")String name);
+    public List<Repair> findRepair(@Param("page") int page,@Param("limit") int limit,@Param("name") String name);
     public List<Repair> getAllRepairs();
     public int getFreeCount();
     List<Repair> getAllShowRepairs();
     public int getCountByUserId(Integer uid);
-    public List<Repair> getAllRepairsByUser(@Param("page") int page,@Param("limit") int limit,@Param("id") int uid);
+    public List<Repair> getAllRepairsByUser(@Param("page") int page,@Param("limit") int limit,@Param("uid") int uid);
 }

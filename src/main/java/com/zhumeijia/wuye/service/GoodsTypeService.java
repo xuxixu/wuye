@@ -41,7 +41,11 @@ public class GoodsTypeService {
     }
 
     public List<Goodstype> findGoodstype(int page, int limit, String name) {
+        System.out.println(page);
+        System.out.println(limit);
+        System.out.println(name);
         List<Goodstype> list = goodstypeMapper.findGoodstype((page - 1) * limit, limit, name);
+        System.out.println(list);
         if (list!=null){
             return list;
         }else{

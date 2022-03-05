@@ -22,7 +22,7 @@
         select count(*) from danyuan where name like #{name}
     </select>
     <select id="findDanyuan" resultType="com.zhumeijia.wuye.bean.Danyuan">
-        select * from danyuan where name like #{name} limit #{page},#{limit}
+        select * from danyuan where name like '%${name}%' limit #{page},#{limit}
     </select>
     <select id="getAllDanyuans" resultType="com.zhumeijia.wuye.bean.Danyuan">
         select * from danyuan

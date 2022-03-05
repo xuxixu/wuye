@@ -8,6 +8,12 @@
     <update id="updateCar" parameterType="com.zhumeijia.wuye.bean.Car">
         update car set `name` = #{name} ,`type` = #{type}  where id = #{id}
     </update>
+    <update id="updateCarStatusById">
+        update car set `status` = 0 where id = #{car_id}
+    </update>
+    <update id="updateCarFStatusById">
+        update car set `status` = 1 where id = #{car_id}
+    </update>
     <delete id="delCar" parameterType="int">
         DELETE from car where id=#{id}
     </delete>
@@ -19,10 +25,10 @@
         select * from car limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from car where name like #{name}
+        select count(*) from car where status like #{name}
     </select>
     <select id="findCar" resultType="com.zhumeijia.wuye.bean.Car">
-        select * from car where name like #{name} limit #{page},#{limit}
+        select * from car where status like #{name} limit #{page},#{limit}
     </select>
     <select id="getAllCars" resultType="com.zhumeijia.wuye.bean.Car">
         select * from car
@@ -32,6 +38,12 @@
     </select>
     <select id="getAllFreeCar" resultType="com.zhumeijia.wuye.bean.Car" parameterType="int">
         select * from car where status = 0 and type = #{type}
+    </select>
+    <select id="findCarByUid" resultType="com.zhumeijia.wuye.bean.Car">
+        SELECT car.id,car.name,car.type,car.`status` FROM car,user,user_car WHERE car.id = car_id and user_id = user.id and user_car.outTime is NULL and user_id = #{uid}
+    </select>
+    <select id="findCarByid" resultType="com.zhumeijia.wuye.bean.Car">
+        select * from car where id = #{car_id}
     </select>
 </mapper>
 

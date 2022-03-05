@@ -19,10 +19,10 @@
         select * from Payment limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from Payment where name like #{name}
+        select count(*) from Payment where name like '%${name}%'
     </select>
     <select id="findPayment" resultType="com.zhumeijia.wuye.bean.Payment">
-        select * from Payment where name like #{name} limit #{page},#{limit}
+        select * from Payment where name like '%${name}%' limit #{page},#{limit}
     </select>
     <select id="getAllPayments" resultType="com.zhumeijia.wuye.bean.Payment">
         select * from Payment

@@ -18,4 +18,13 @@ public interface CarMapper {
     public List<Car> getAllCars();
     public int getFreeCount();
     List<Car> getAllFreeCar(int type);
+
+    List<Car> findCarByUid(Integer id);
+
+    List<Car> findCarByid(Integer car_id);
+
+    void updateCarStatusById(Integer car_id);
+
+    void updateCarFStatusById(Integer car_id);
+
 }

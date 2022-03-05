@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.TousuMapper">
+    <insert id="addTousu" parameterType="com.zhumeijia.wuye.bean.Tousu">
+        insert into tousu values(null,#{content},#{uid},#{status},#{time},#{result})
+    </insert>
+    <update id="updateTousu" parameterType="com.zhumeijia.wuye.bean.Tousu">
+        update tousu set`content` = #{content} ,`status` = #{status},`result` = #{result} where id = #{id}
+    </update>
+    <delete id="delTousu" parameterType="int">
+        DELETE from tousu where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from tousu
+    </select>
+    <select id="getAllTousu" resultType="com.zhumeijia.wuye.bean.Tousu">
+        select * from tousu limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from tousu where status like #{name}
+    </select>
+    <select id="findTousu" resultType="com.zhumeijia.wuye.bean.Tousu">
+        select * from tousu where status like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllTousus" resultType="com.zhumeijia.wuye.bean.Tousu">
+        select * from tousu
+    </select>
+    <select id="getFreeCount" resultType="java.lang.Integer">
+        select count(*) from tousu where status = 0
+    </select>
+    <select id="getAllShowTousus" resultType="com.zhumeijia.wuye.bean.Tousu" parameterType="int">
+        select * from tousu where status = 0
+    </select>
+    <select id="getCountByUserId" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from tousu where uid = #{uid}
+    </select>
+    <select id="getAllToususByUser" resultType="com.zhumeijia.wuye.bean.Tousu">
+        select * from tousu where uid = #{uid} limit #{page},#{limit}
+    </select>
+    <select id="getCountById" resultType="java.lang.Integer">
+        select count(*) from tousu where id = #{id}
+    </select>
+</mapper>
+

@@ -22,10 +22,10 @@ spring:
     suffix:  .html
 
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/wuye?charset=utf8mb4&useSSL=false
+    url: jdbc:mysql://localhost:3306/wuye?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: root
     password: root
-    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     initialSize: 5
     minIdle: 5

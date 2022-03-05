@@ -18,4 +18,12 @@ public interface RoomMapper {
     public List<Room> getAllRooms();
     public int getFreeCount();
     List<Room> getAllFreeRoom(int danyuan_id);
+
+    List<Room> findRoomByUid(Integer id);
+
+    List<Room> findRoomByid(Integer rid);
+
+    void updateRoomById(Integer rid);
+
+    void updateRoomByIdI(Integer room_id);
 }
