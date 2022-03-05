@@ -27,5 +27,8 @@
     <select id="getAllWarehouses" resultType="com.zhumeijia.wuye.bean.Warehouse">
         select * from warehouse
     </select>
+    <select id="findWarehouseById" resultType="com.zhumeijia.wuye.bean.Warehouse">
+        select * from warehouse where id = #{whid}
+    </select>
 </mapper>
 

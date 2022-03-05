@@ -2,7 +2,6 @@ package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Building;
 import com.zhumeijia.wuye.bean.Car;
-import com.zhumeijia.wuye.dao.CarDao;
 import com.zhumeijia.wuye.mapper.CarMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

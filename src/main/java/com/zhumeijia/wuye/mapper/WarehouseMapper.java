@@ -16,4 +16,6 @@ public interface WarehouseMapper {
     public int getCountByName(@Param("name")String name);
     public List<Warehouse> findWarehouse(@Param("page") int page,@Param("limit") int limit,@Param("name") String name);
     public List<Warehouse> getAllWarehouses();
+
+    List<Warehouse> findWarehouseById(long whid);
 }

@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.ProcurementMapper">
+    <insert id="addProcurement" parameterType="com.zhumeijia.wuye.bean.Procurement">
+        insert into procurement values(null,#{number},#{gname},#{gtid},#{whid},#{time},#{status},#{totalmoney})
+    </insert>
+    <update id="updateProcurement" parameterType="com.zhumeijia.wuye.bean.Procurement">
+        update procurement set gname = #{gname} and number = #{number} and gtid = #{gtid} and whid = #{whid} and time=#{time} and status = #{status} and totalmoney = #{totalmoney} where id = #{id}
+    </update>
+    <update id="updateNumberByName">
+        update `procurement` set number = #{number} where gname = #{gname}
+    </update>
+    <update id="queren">
+        update procurement set status = 1 where id = #{id}
+    </update>
+    <delete id="delProcurement" parameterType="int">
+        DELETE from procurement where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from procurement
+    </select>
+    <select id="getAllProcurement" resultType="com.zhumeijia.wuye.bean.Procurement">
+        select * from procurement limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from procurement where status like #{status}
+    </select>
+    <select id="findProcurement" resultType="com.zhumeijia.wuye.bean.Procurement">
+        select * from procurement where status like #{status} limit #{page},#{limit}
+    </select>
+    <select id="getAllProcurements" resultType="com.zhumeijia.wuye.bean.Procurement">
+        select * from procurement
+    </select>
+    <select id="findProcurementById" resultType="com.zhumeijia.wuye.bean.Procurement" parameterType="int">
+        select * from procurement where id = #{id}
+    </select>
+
+</mapper>
+

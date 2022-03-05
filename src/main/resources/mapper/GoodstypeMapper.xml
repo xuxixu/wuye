@@ -27,5 +27,8 @@
     <select id="getAllGoodstypes" resultType="com.zhumeijia.wuye.bean.Goodstype">
         select * from goodstype
     </select>
+    <select id="findGoodstypeById" resultType="com.zhumeijia.wuye.bean.Goodstype">
+        select * from goodstype where id = #{gtid}
+    </select>
 </mapper>
 

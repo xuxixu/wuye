@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.AdoptionMapper">
+    <insert id="addAdoption" parameterType="com.zhumeijia.wuye.bean.Adoption">
+        insert into adoption values(null,#{gname},#{number},#{time},#{status})
+    </insert>
+    <update id="updateAdoption" parameterType="com.zhumeijia.wuye.bean.Adoption">
+        update adoption set gname = #{gname} and number = #{number} and time=#{time} and status = #{status} where id = #{id}
+    </update>
+    <update id="updateNumberByName">
+        update `adoption` set number = #{number} where gname = #{gname}
+    </update>
+    <update id="queren">
+        update adoption set status = 1 where id = #{id}
+    </update>
+    <delete id="delAdoption" parameterType="int">
+        DELETE from adoption where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from adoption
+    </select>
+    <select id="getAllAdoption" resultType="com.zhumeijia.wuye.bean.Adoption">
+        select * from adoption limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from adoption where status like #{status}
+    </select>
+    <select id="findAdoption" resultType="com.zhumeijia.wuye.bean.Adoption">
+        select * from adoption where status like #{status} limit #{page},#{limit}
+    </select>
+    <select id="getAllAdoptions" resultType="com.zhumeijia.wuye.bean.Adoption">
+        select * from adoption
+    </select>
+    <select id="findAdoptionById" resultType="com.zhumeijia.wuye.bean.Adoption" parameterType="int">
+        select * from adoption where id = #{id}
+    </select>
+
+</mapper>
+

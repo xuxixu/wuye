@@ -16,4 +16,6 @@ public interface GoodstypeMapper {
     public int getCountByName(@Param("name")String name);
     public List<Goodstype> findGoodstype(@Param("page") int page,@Param("limit") int limit,@Param("name") String name);
     public List<Goodstype> getAllGoodstypes();
+
+    List<Goodstype> findGoodstypeById(long gtid);
 }
