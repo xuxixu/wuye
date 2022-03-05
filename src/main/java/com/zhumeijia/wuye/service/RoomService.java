@@ -2,7 +2,6 @@ package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Danyuan;
 import com.zhumeijia.wuye.bean.Room;
-import com.zhumeijia.wuye.dao.RoomDao;
 import com.zhumeijia.wuye.mapper.DanyuanMapper;
 import com.zhumeijia.wuye.mapper.RoomMapper;
 import org.springframework.beans.factory.annotation.Autowired;
