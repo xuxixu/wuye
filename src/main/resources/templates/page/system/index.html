@@ -19,7 +19,7 @@
     <div class="layui-header">
         <div class="layui-logo">
             <img src="/assets/images/logo.png"/>
-            <cite>小区物业</cite>
+            <cite>筑美家小区物业</cite>
         </div>
         <ul class="layui-nav layui-layout-left">
             <li class="layui-nav-item" lay-unselect>
@@ -27,6 +27,27 @@
             </li>
             <li class="layui-nav-item" lay-unselect>
                 <a ew-event="refresh" title="刷新"><i class="layui-icon layui-icon-refresh-3"></i></a>
+            </li>
+            <li class="layui-nav-item" lay-unselect>
+                <div class="weather" pc>
+                    <div id="tp-weather-widget"></div>
+                    <script>(function(T,h,i,n,k,P,a,g,e){g=function(){P=h.createElement(i);a=h.getElementsByTagName(i)[0];P.src=k;P.charset="utf-8";P.async=1;a.parentNode.insertBefore(P,a)};T["ThinkPageWeatherWidgetObject"]=n;T[n]||(T[n]=function(){(T[n].q=T[n].q||[]).push(arguments)});T[n].l=+new Date();if(T.attachEvent){T.attachEvent("onload",g)}else{T.addEventListener("load",g,false)}}(window,document,"script","tpwidget","//widget.seniverse.com/widget/chameleon.js"))</script>
+                    <script>tpwidget("init", {
+                        "flavor": "slim",
+                        "location": "WX4FBXXFKE4F",
+                        "geolocation": "enabled",
+                        "language": "zh-chs",
+                        "unit": "c",
+                        "theme": "chameleon",
+                        "container": "tp-weather-widget",
+                        "bubble": "disabled",
+                        "alarmType": "badge",
+                        "color": "black",
+                        "uid": "U9EC08A15F",
+                        "hash": "039da28f5581f4bcb5c799fb4cdfb673"
+                    });
+                    tpwidget("show");</script>
+                </div>
             </li>
         </ul>
         <ul class="layui-nav layui-layout-right">
@@ -65,7 +86,7 @@
                 <li class="layui-nav-item">
                     <a><i class="layui-icon layui-icon-home"></i>&emsp;<cite>首页</cite></a>
                     <dl class="layui-nav-child">
-                        <dd><a lay-href="/user/console">总信息</a></dd>
+                        <dd><a lay-href="/user/console">总览</a></dd>
                     </dl>
                 </li>
             </ul>
