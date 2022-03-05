@@ -11,8 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class User_Payment {
     Integer id;
-    Integer user_id;
-    Integer payment_id;
+    Integer uid;
+    Integer pid;
     String value;
     Date time;
     Integer status;

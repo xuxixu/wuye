@@ -16,4 +16,6 @@ public interface PaymentMapper {
     public int getCountByName(@Param("name")String name);
     public List<Payment> findPayment(@Param("page") int page,@Param("limit") int limit,@Param("name") String name);
     public List<Payment> getAllPayments();
+
+    List<Payment> findPaymentById(Integer pid);
 }

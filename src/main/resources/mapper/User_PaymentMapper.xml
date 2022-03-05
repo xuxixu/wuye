@@ -1,0 +1,50 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.User_PaymentMapper">
+    <insert id="addUser_Payment" parameterType="com.zhumeijia.wuye.bean.User_Payment">
+        insert into user_payment values(null,#{uid},#{pid},#{value},#{time},#{status})
+    </insert>
+    <insert id="fenpei">
+        insert into user_payment values(null,#{uid},#{pid},#{value},#{time},0)
+    </insert>
+    <update id="updateUser_Payment" parameterType="com.zhumeijia.wuye.bean.User_Payment">
+        update user_payment set uid = #{uid} and pid = #{pid} and time=#{time} and status = #{name} and value = #{value} where id = #{id}
+    </update>
+    <update id="jiaofei">
+        update user_payment set status = 1 where id = #{id}
+    </update>
+    <delete id="delUser_Payment" parameterType="int">
+        DELETE from user_payment where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from user_payment
+    </select>
+    <select id="getAllUser_Payment" resultType="com.zhumeijia.wuye.bean.User_Payment">
+        select * from user_payment limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from user_payment where status like #{name}
+    </select>
+    <select id="findUser_Payment" resultType="com.zhumeijia.wuye.bean.User_Payment">
+        select * from user_payment where status like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getAllUser_Payments" resultType="com.zhumeijia.wuye.bean.User_Payment">
+        select * from user_payment
+    </select>
+    <select id="findUser_PaymentById" resultType="com.zhumeijia.wuye.bean.User_Payment" parameterType="int">
+        select * from user_payment where id = #{id}
+    </select>
+    <select id="getAllPaymentDetailsByUid" resultType="com.zhumeijia.wuye.bean.User_Payment">
+        select * from user_payment where uid = #{uid} limit #{page},#{limit}
+    </select>
+    <select id="getCountByUserId" resultType="java.lang.Integer">
+        select count(*) from user_payment where uid like #{uid}
+    </select>
+    <select id="getFreeCount" resultType="java.lang.Integer">
+        select count(*) from user_payment where status = 0
+    </select>
+
+</mapper>
+

@@ -27,5 +27,8 @@
     <select id="getAllPayments" resultType="com.zhumeijia.wuye.bean.Payment">
         select * from Payment
     </select>
+    <select id="findPaymentById" resultType="com.zhumeijia.wuye.bean.Payment">
+        select * from Payment where id = #{pid}
+    </select>
 </mapper>
 

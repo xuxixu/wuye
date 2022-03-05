@@ -25,10 +25,10 @@
         select * from adoption limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from adoption where status like #{status}
+        select count(*) from adoption where status = #{name}
     </select>
     <select id="findAdoption" resultType="com.zhumeijia.wuye.bean.Adoption">
-        select * from adoption where status like #{status} limit #{page},#{limit}
+        select * from adoption where status = #{name} limit #{page},#{limit}
     </select>
     <select id="getAllAdoptions" resultType="com.zhumeijia.wuye.bean.Adoption">
         select * from adoption

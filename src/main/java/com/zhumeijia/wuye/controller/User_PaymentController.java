@@ -58,8 +58,8 @@ public class User_PaymentController {
     @PostMapping("/api/fenpeiPayment")
     public ResBody fenpeiPayment(@RequestBody User_Payment user_payment) {
         ResBody resBody = new ResBody();
-        user_payment.setUser_id(user_payment.getId());
-        int i = service.fenpei(user_payment.getUser_id(),user_payment.getPayment_id(),user_payment.getValue());
+        user_payment.setUid(user_payment.getId());
+        int i = service.fenpei(user_payment.getUid(),user_payment.getPid(),user_payment.getValue());
         if (i == 1){
             resBody.setCode(200);
             resBody.setMsg("添加成功");

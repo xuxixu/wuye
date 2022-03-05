@@ -25,10 +25,10 @@
         select * from procurement limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from procurement where status like #{status}
+        select count(*) from procurement where status = #{name}
     </select>
     <select id="findProcurement" resultType="com.zhumeijia.wuye.bean.Procurement">
-        select * from procurement where status like #{status} limit #{page},#{limit}
+        select * from procurement where status = #{name} limit #{page},#{limit}
     </select>
     <select id="getAllProcurements" resultType="com.zhumeijia.wuye.bean.Procurement">
         select * from procurement

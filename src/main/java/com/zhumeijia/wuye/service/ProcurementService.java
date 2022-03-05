@@ -4,6 +4,7 @@ import com.zhumeijia.wuye.bean.Goods;
 import com.zhumeijia.wuye.bean.Goodstype;
 import com.zhumeijia.wuye.bean.Procurement;
 import com.zhumeijia.wuye.bean.Warehouse;
+
 import com.zhumeijia.wuye.mapper.GoodsMapper;
 import com.zhumeijia.wuye.mapper.GoodstypeMapper;
 import com.zhumeijia.wuye.mapper.ProcurementMapper;
