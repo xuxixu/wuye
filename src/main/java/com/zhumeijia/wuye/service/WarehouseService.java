@@ -1,7 +1,6 @@
 package com.zhumeijia.wuye.service;
 
 import com.zhumeijia.wuye.bean.Warehouse;
-import com.zhumeijia.wuye.dao.WarehouseDao;
 import com.zhumeijia.wuye.mapper.WarehouseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
