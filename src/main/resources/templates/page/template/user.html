@@ -64,7 +64,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">类型</label>
             <div class="layui-input-block">
-                <select name="payment_id" lay-verify="required" lay-filter="paymentCategory">
+                <select name="pid" lay-verify="required" lay-filter="paymentCategory">
                     <option value="">请选择收费类型</option>
                 </select>
             </div>
@@ -274,7 +274,7 @@
                                     option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                                 }
                             }
-                            $("[name='payment_id']").append(option);
+                            $("[name='pid']").append(option);
                             form.render()
                         }
                     })

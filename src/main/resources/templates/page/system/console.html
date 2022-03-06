@@ -250,6 +250,7 @@
         </div>
     </form>
 </script>
+
 <script type="text/html" id="modelRepair">
     <form id="modelRepairForm" lay-filter="modelRepairForm" class="layui-form model-form">
         <input name="id" type="hidden"/>
@@ -437,11 +438,7 @@
                             [
                                 {type: 'numbers'}
                                 ,{field: 'payment', sort: true, templet: '#templet1', title: '缴费名'}
-                                ,{field: 'user', sort: true, templet: '#templet2', title: '用户名'}
                                 ,{field: 'value', sort: true, title: '缴费值'}
-                                ,{field: 'time', sort: true, templet: function (d) {
-                                    return util.toDateString(d.time);
-                                },title: '缴费时间'}
                                 ,{field: 'status', sort: true, templet: '#building_3', title: '状态'}
                             ]
                         ],
@@ -451,6 +448,8 @@
             });
         });
     });
+
+
 </script>
 </body>
 

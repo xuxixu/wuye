@@ -7,10 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
-import java.util.List;
 
 @Controller
 public class IndexController {
@@ -35,6 +33,7 @@ public class IndexController {
     public String login() {
         return "page/template/login";
     }
+
 
     @GetMapping("/index")
     public String index() {
@@ -164,6 +163,11 @@ public class IndexController {
     @GetMapping("/user/login")
     public String userlogin(){
         return "page/system/login";
+    }
+
+    @GetMapping("/user/user_paymentdetail")
+    public String user_paymentdetail(){
+        return "page/system/user_paymentdetail";
     }
 
     @GetMapping("/user/index")

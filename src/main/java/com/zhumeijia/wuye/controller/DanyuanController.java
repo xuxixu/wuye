@@ -44,6 +44,7 @@ public class DanyuanController {
     @PostMapping("/api/updateDanyuan")
     public ResBody updateDanyuan(@RequestBody Danyuan danyuan) {
         ResBody resBody = new ResBody();
+        System.out.println(danyuan);
         int i = service.updateDanyuan(danyuan);
         if (i == 1){
             resBody.setCode(200);

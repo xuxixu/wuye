@@ -26,5 +26,9 @@ public interface User_PaymentMapper {
 
     int getFreeCount();
 
-    int fenpei(Integer uid, Integer pid, String value, Date time);
+    int fenpei(@Param("uid") Integer uid,@Param("pid") Integer pid,@Param("value") String value,@Param("time") Date time);
+
+    List<User_Payment> findUser_PaymentStatus(@Param("page") int i,@Param("limit") int limit,@Param("name") String name,@Param("uid") Integer id);
+
+    User_Payment getPaymentById(int id);
 }

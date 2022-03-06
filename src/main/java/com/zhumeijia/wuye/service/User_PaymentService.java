@@ -7,7 +7,6 @@ import com.zhumeijia.wuye.mapper.PaymentMapper;
 import com.zhumeijia.wuye.mapper.UserMapper;
 import com.zhumeijia.wuye.mapper.User_PaymentMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -23,6 +22,7 @@ public class User_PaymentService {
     PaymentMapper pdao;
 
     public int fenpei(Integer user_id, Integer payment_id, String value) {
+        System.out.println(payment_id);
         return dao.fenpei(user_id,payment_id,value, new Date());
     }
 
@@ -93,5 +93,49 @@ public class User_PaymentService {
     }
 
     public int jiaofei(int id) {return dao.jiaofei(id);
+    }
+
+    public List<User_Payment> getAllPaymentDetailsByUid(int page, int limit, Integer user_id) {
+        List<User_Payment> list = dao.getAllPaymentDetailsByUid((page - 1) * limit, limit, user_id);
+        if (list!=null){
+            for (User_Payment user_payment:list){
+                List<User> user = udao.findUserById(user_payment.getUid());
+                List<Payment> payment = pdao.findPaymentById(user_payment.getPid());
+                user_payment.setUser(user.get(0));
+                user_payment.setPayment(payment.get(0));
+            }
+            return list;
+        }else{
+            return null;
+        }
+    }
+
+    public List<User_Payment> getAllPaymentDetailsByUidByStatus(int page, int limit, String name, Integer id) {
+        List<User_Payment> list = dao.findUser_PaymentStatus((page - 1) * limit, limit, name,id);
+        if (list!=null){
+            for (User_Payment user_payment:list){
+                List<User> user = udao.findUserById(user_payment.getUid());
+                List<Payment> payment = pdao.findPaymentById(user_payment.getPid());
+                user_payment.setUser(user.get(0));
+                user_payment.setPayment(payment.get(0));
+            }
+            return list;
+        }else{
+            return null;
+        }
+    }
+
+    public User_Payment getPaymentById(int id) {
+
+        User_Payment user_payment = dao.getPaymentById(id);
+        if (user_payment!=null){
+                List<User> user = udao.findUserById(user_payment.getUid());
+                List<Payment> payment = pdao.findPaymentById(user_payment.getPid());
+                user_payment.setUser(user.get(0));
+                user_payment.setPayment(payment.get(0));
+            return user_payment;
+        }else{
+            return null;
+        }
     }
 }

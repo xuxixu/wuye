@@ -45,6 +45,12 @@
     <select id="getFreeCount" resultType="java.lang.Integer">
         select count(*) from user_payment where status = 0
     </select>
+    <select id="findUser_PaymentStatus" resultType="com.zhumeijia.wuye.bean.User_Payment">
+        select * from user_payment where uid = #{uid} and status like #{name} limit #{page},#{limit}
+    </select>
+    <select id="getPaymentById" resultType="com.zhumeijia.wuye.bean.User_Payment">
+        select * from user_payment where id = #{id}
+    </select>
 
 </mapper>
 
