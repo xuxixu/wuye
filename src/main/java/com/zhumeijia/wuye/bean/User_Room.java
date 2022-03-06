@@ -11,8 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class User_Room {
     Integer id;
-    Integer user_id;
-    Integer room_id;
+    Integer uid;
+    Integer rid;
     Date inTime;
     Date outTime;
     User user;

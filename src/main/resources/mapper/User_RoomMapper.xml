@@ -3,27 +3,27 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhumeijia.wuye.mapper.User_RoomMapper">
     <insert id="fenpei">
-        insert into user_room values(null,#{user_id},#{room_id},#{date},null)
+        insert into user_room values(null,#{uid},#{rid},#{date},null)
     </insert>
     <update id="updateUser_RoomByUid">
-        update user_room set `outTime` = #{date} where user_id = #{uid} and outTime is null
+        update user_room set `outTime` = #{date} where uid = #{uid} and outTime is null
     </update>
 
 
     <select id="getRoomRecordCount" resultType="java.lang.Integer">
-        select count(*) from `user_room` where room_id = #{rid}
+        select count(*) from `user_room` where rid = #{id}
     </select>
     <select id="findRoomRecordById" resultType="com.zhumeijia.wuye.bean.User_Room">
-        select * from `user_room` where room_id = #{id} limit #{i},#{limit}
+        select * from `user_room` where rid = #{id} limit #{i},#{limit}
     </select>
     <select id="findRoom" resultType="java.lang.Integer">
-        SELECT count(*) FROM user_room where user_id = #{user_id} and outTime is null
+        SELECT count(*) FROM user_room where uid = #{uid} and outTime is null
     </select>
     <select id="outRoom" resultType="com.zhumeijia.wuye.bean.User_Room">
-        select * from `user_room` where user_id = #{user_id} and  outTime is null
+        select * from `user_room` where uid = #{uid} and  outTime is null
     </select>
     <select id="findRoomByUid" resultType="com.zhumeijia.wuye.bean.User_Room">
-        select * from `user_room` where user_id = #{id} and  outTime is null
+        select * from `user_room` where uid = #{id} and  outTime is null
     </select>
 </mapper>
 

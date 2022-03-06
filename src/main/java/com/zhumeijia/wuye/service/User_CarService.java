@@ -27,10 +27,11 @@ public class User_CarService {
 
     public List<User_Car> findCarRecordById(int id, int page, int limit) {
         List<User_Car> list = dao.findCarRecordById(id, (page - 1) * limit, limit);
+        System.out.println(list);
         if (list!=null){
             for (User_Car user_car:list){
-                List<User> user = udao.findUserById(user_car.getUser_id());
-                List<Car> car = cdao.findCarByid(user_car.getCar_id());
+                List<User> user = udao.findUserById(user_car.getUid());
+                List<Car> car = cdao.findCarByid(user_car.getCid());
                 user_car.setUser(user.get(0));
                 user_car.setCar(car.get(0));
             }
@@ -46,7 +47,7 @@ public class User_CarService {
 
     public void outCar(Integer user_id) {
         List<User_Car> list = dao.outCar(user_id);
-        cdao.updateCarStatusById(list.get(0).getCar_id());
+        cdao.updateCarStatusById(list.get(0).getCid());
         dao.updateUser_CarByUid(new Date(),user_id);
     }
 
@@ -60,7 +61,7 @@ public class User_CarService {
         if (list.isEmpty()){
             return 1;
         }
-        cdao.updateCarStatusById(list.get(0).getCar_id());
+        cdao.updateCarStatusById(list.get(0).getCid());
         return dao.updateUser_CarByUid(new Date(),id);
     }
 }

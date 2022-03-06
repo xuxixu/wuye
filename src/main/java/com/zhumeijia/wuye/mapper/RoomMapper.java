@@ -17,7 +17,7 @@ public interface RoomMapper {
     public List<Room> findRoom(@Param("page") int page,@Param("limit") int limit,@Param("name") String name);
     public List<Room> getAllRooms();
     public int getFreeCount();
-    List<Room> getAllFreeRoom(int danyuan_id);
+    List<Room> getAllFreeRoom(int did);
 
     List<Room> findRoomByUid(Integer id);
 
@@ -25,5 +25,5 @@ public interface RoomMapper {
 
     void updateRoomById(Integer rid);
 
-    void updateRoomByIdI(Integer room_id);
+    void updateRoomByIdI(Integer rid);
 }

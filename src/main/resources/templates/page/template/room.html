@@ -79,7 +79,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">属于单元</label>
             <div class="layui-input-block">
-                <select name="danyuan_id" lay-verify="required">
+                <select name="did" lay-verify="required">
                     <option value="">请选择属于单元</option>
                 </select>
             </div>
@@ -225,7 +225,7 @@
                                         option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                                     }
                                 }
-                                $("[name='danyuan_id']").append(option);
+                                $("[name='did']").append(option);
                                 form.render()
                             }
                         })
@@ -274,7 +274,7 @@
                                         option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                                     }
                                 }
-                                $("[name='danyuan_id']").append(option);
+                                $("[name='did']").append(option);
                                 form.render()
                             }
                         })

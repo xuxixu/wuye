@@ -3,16 +3,16 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zhumeijia.wuye.mapper.RoomMapper">
     <insert id="addRoom" parameterType="com.zhumeijia.wuye.bean.Room">
-        insert into room values(null,#{name},#{area},0,#{danyuan_id})
+        insert into room values(null,#{name},#{area},0,#{did})
     </insert>
     <update id="updateRoom" parameterType="com.zhumeijia.wuye.bean.Room">
-        update room set `name` = #{name} ,`area` = #{area} ,`did` = #{danyuan_id} where id = #{id}
+        update room set `name` = #{name} ,`area` = #{area} ,`did` = #{did} where id = #{id}
     </update>
     <update id="updateRoomById">
         update room set `status` = 0 where id = #{id}
     </update>
     <update id="updateRoomByIdI">
-        update room set `status` = 1 where id = #{id}
+        update room set `status` = 1 where id = #{rid}
     </update>
     <delete id="delRoom" parameterType="int">
         DELETE from room where id=#{id}
@@ -37,10 +37,10 @@
         select count(*) from room where status = 0
     </select>
     <select id="getAllFreeRoom" resultType="com.zhumeijia.wuye.bean.Room" parameterType="int">
-        select * from room where status = 0 and did = #{danyuan_id}
+        select * from room where status = 0 and did = #{did}
     </select>
     <select id="findRoomByUid" resultType="com.zhumeijia.wuye.bean.Room">
-        SELECT room.id,room.name,room.did,room.`status` FROM room,user,user_room WHERE room.id = user_room.room_id and user_room.user_id = user.id and user_room.outTime is NULL and user_id = #{id}
+        SELECT room.id,room.name,room.did,room.`status` FROM room,user,user_room WHERE room.id = user_room.rid and user_room.uid = user.id and user_room.outTime is NULL and uid = #{id}
     </select>
     <select id="findRoomByid" resultType="com.zhumeijia.wuye.bean.Room">
         select * from `room` where id = #{id}

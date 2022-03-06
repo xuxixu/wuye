@@ -82,6 +82,13 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input name="password" placeholder="请输入密码" type="password" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="password" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label class="layui-form-label">性别</label>
             <div class="layui-input-block">
                 <input type="radio" name="sex" value="0" title="男" checked/>
@@ -123,7 +130,7 @@
                     content: $('#modelBook').html(),
                     success: function (layero, dIndex) {
                         $(layero).children('.layui-layer-content').css('overflow', 'visible');
-                        var url = '/api/addUser';
+                        var url = '/api/addUser1';
                         // 表单提交事件
                         form.render();
                         form.on('submit(modelSubmitBook)', function (data) {
@@ -149,6 +156,7 @@
                     }
                 });
         }
+
 
         // 表单提交
         form.on('submit(login-submit)', function (obj) {

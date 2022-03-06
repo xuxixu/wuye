@@ -25,11 +25,13 @@ public class User_RoomService {
     }
 
     public List<User_Room> findRoomRecordById(int id, int page, int limit) {
+        System.out.println(id);
         List<User_Room> list = dao.findRoomRecordById(id, (page - 1) * limit, limit);
+        System.out.println(list);
         if (list!=null){
             for (User_Room user_room:list){
-                List<User> user = udao.findUserById(user_room.getUser_id());
-                List<Room> room = rdao.findRoomByid(user_room.getRoom_id());
+                List<User> user = udao.findUserById(user_room.getUid());
+                List<Room> room = rdao.findRoomByid(user_room.getRid());
                 user_room.setUser(user.get(0));
                 user_room.setRoom(room.get(0));
             }
@@ -45,8 +47,8 @@ public class User_RoomService {
 
     public void outRoom(Integer user_id) {
         List<User_Room> list = dao.outRoom(user_id);
-        rdao.updateRoomById(list.get(0).getRoom_id());
-        dao.updateUser_RoomByUid(new Date(),list.get(0).getUser_id());
+        rdao.updateRoomById(list.get(0).getRid());
+        dao.updateUser_RoomByUid(new Date(),list.get(0).getUid());
     }
 
     public int fenpei(Integer user_id, Integer room_id) {
@@ -60,7 +62,7 @@ public class User_RoomService {
         if (list.isEmpty()){
             return 1;
         }
-        rdao.updateRoomById(list.get(0).getRoom_id());
+        rdao.updateRoomById(list.get(0).getRid());
         return dao.updateUser_RoomByUid(new Date(),id);
     }
 

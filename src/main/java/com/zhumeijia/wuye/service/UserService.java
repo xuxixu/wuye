@@ -58,7 +58,7 @@ public class UserService {
     }
 
     public int addUser(User user) {
-        int count = dao.findUserByPhone(user.getPhone());
+        int count = dao.findCountByName(user.getUsername());
         if (count != 0){
             return 0;
         }

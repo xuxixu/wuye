@@ -9,10 +9,10 @@
         update car set `name` = #{name} ,`type` = #{type}  where id = #{id}
     </update>
     <update id="updateCarStatusById">
-        update car set `status` = 0 where id = #{car_id}
+        update car set `status` = 0 where id = #{cid}
     </update>
     <update id="updateCarFStatusById">
-        update car set `status` = 1 where id = #{car_id}
+        update car set `status` = 1 where id = #{cid}
     </update>
     <delete id="delCar" parameterType="int">
         DELETE from car where id=#{id}
@@ -40,10 +40,10 @@
         select * from car where status = 0 and type = #{type}
     </select>
     <select id="findCarByUid" resultType="com.zhumeijia.wuye.bean.Car">
-        SELECT car.id,car.name,car.type,car.`status` FROM car,user,user_car WHERE car.id = car_id and user_id = user.id and user_car.outTime is NULL and user_id = #{uid}
+        SELECT car.id,car.name,car.type,car.`status` FROM car,user,user_car WHERE car.id = user_car.cid and user_car.uid = user.id and user_car.outTime is NULL and uid = #{uid}
     </select>
     <select id="findCarByid" resultType="com.zhumeijia.wuye.bean.Car">
-        select * from car where id = #{car_id}
+        select * from car where id = #{cid}
     </select>
 </mapper>
 

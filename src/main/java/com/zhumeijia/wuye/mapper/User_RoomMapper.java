@@ -14,13 +14,13 @@ public interface User_RoomMapper {
 
     List<User_Room> findRoomRecordById(@Param("id")int id,@Param("i") int i,@Param("limit") int limit);
 
-    int findRoom(@Param("user_id") Integer user_id);
+    int findRoom(@Param("uid") Integer user_id);
 
-    List<User_Room> outRoom(@Param("user_id")Integer user_id);
+    List<User_Room> outRoom(@Param("uid")Integer user_id);
 
     int updateUser_RoomByUid(@Param("date") Date date, @Param("uid")Integer uid);
 
-    int fenpei(@Param("user_id")Integer user_id,@Param("room_id") Integer room_id,@Param("date") Date date);
+    int fenpei(@Param("uid")Integer user_id,@Param("rid") Integer room_id,@Param("date") Date date);
 
     List<User_Room> findRoomByUid(@Param("id") int id);
 }

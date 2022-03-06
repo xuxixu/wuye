@@ -14,13 +14,13 @@ public interface User_CarMapper {
 
     List<User_Car> findCarRecordById(@Param("id")int id,@Param("i") int i,@Param("limit") int limit);
 
-    int findCar(@Param("user_id") Integer user_id);
+    int findCar(@Param("uid") Integer uid);
 
-    List<User_Car> outCar(@Param("user_id")Integer user_id);
+    List<User_Car> outCar(@Param("uid")Integer uid);
 
     int updateUser_CarByUid(@Param("date") Date date, @Param("uid")Integer uid);
 
-    int fenpei(@Param("user_id")Integer user_id,@Param("car_id") Integer car_id,@Param("date") Date date);
+    int fenpei(@Param("uid")Integer uid,@Param("cid") Integer cid,@Param("date") Date date);
 
     List<User_Car> findCarByUid(@Param("id") int id);
 }

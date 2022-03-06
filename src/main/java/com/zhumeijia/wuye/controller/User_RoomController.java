@@ -45,14 +45,14 @@ public class User_RoomController {
     public ResBody fenpeiRoom(@RequestBody User_Room user_room) {
         ResBody resBody = new ResBody();
         System.out.println(user_room);
-        user_room.setUser_id(user_room.getId());
+        user_room.setUid(user_room.getId());
         //判断该用户当前有无房间，如果有，先退房再入住。
-        int count = service.findRoom(user_room.getUser_id());
+        int count = service.findRoom(user_room.getUid());
         if (count == 1){
-            service.outRoom(user_room.getUser_id());
+            service.outRoom(user_room.getUid());
         }
         System.out.println(user_room);
-        int i = service.fenpei(user_room.getUser_id(),user_room.getRoom_id());
+        int i = service.fenpei(user_room.getUid(),user_room.getRid());
         if (i == 1){
             resBody.setCode(200);
             resBody.setMsg("添加成功");

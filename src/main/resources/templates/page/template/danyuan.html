@@ -67,7 +67,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">属于楼栋</label>
             <div class="layui-input-block">
-                <select name="building_id" lay-verify="required">
+                <select name="bid" lay-verify="required">
                     <option value="">请选择属于哪栋</option>
                 </select>
             </div>
@@ -153,7 +153,7 @@
                                         option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                                     }
                                 }
-                                $("[name='building_id']").append(option);
+                                $("[name='bid']").append(option);
                                 form.render()
                             }
                         })
@@ -202,7 +202,7 @@
                                         option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                                     }
                                 }
-                                $("[name='building_id']").append(option);
+                                $("[name='bid']").append(option);
                                 form.render()
                             }
                         })

@@ -25,5 +25,5 @@ public interface UserMapper {
 
     User getUserById(Integer id);
 
-    int findUserByPhone(String phone);
+    int findCountByName(String username);
 }

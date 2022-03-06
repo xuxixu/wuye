@@ -11,8 +11,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class User_Car {
     Integer id;
-    Integer user_id;
-    Integer car_id;
+    Integer uid;
+    Integer cid;
     Date inTime;
     Date outTime;
     User user;

@@ -98,7 +98,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">空闲车位</label>
             <div class="layui-input-block">
-                <select name="car_id" lay-verify="required">
+                <select name="cid" lay-verify="required">
                     <option value="">请选择空闲车位</option>
                 </select>
             </div>
@@ -124,7 +124,7 @@
         <div class="layui-form-item">
             <label class="layui-form-label">空闲房间</label>
             <div class="layui-input-block">
-                <select name="room_id" lay-verify="required">
+                <select name="rid" lay-verify="required">
                     <option value="">请选择空闲房间</option>
                 </select>
             </div>
@@ -152,6 +152,13 @@
             <div class="layui-input-block">
                 <input name="phone" placeholder="手机号" type="text" class="layui-input" maxlength="20"
                        lay-verType="tips" lay-verify="phone" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">密码</label>
+            <div class="layui-input-block">
+                <input name="password" placeholder="密码" type="password" class="layui-input" maxlength="20"
+                       lay-verType="tips" lay-verify="password" required/>
             </div>
         </div>
         <div class="layui-form-item">
@@ -327,7 +334,7 @@
                                         option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                                     }
                                 }
-                                $("[name='car_id']").append(option);
+                                $("[name='cid']").append(option);
                                 form.render()
                             }
                         })
@@ -398,7 +405,7 @@
                                             option += "<option value='"+res.data[i]['id']+"'>"+res.data[i]['name']+"</option>";
                                         }
                                     }
-                                    $("[name='room_id']").append(option);
+                                    $("[name='rid']").append(option);
                                     form.render()
                                 }
                             })
@@ -442,7 +449,7 @@
                     content: $('#modelBook').html(),
                     success: function (layero, dIndex) {
                         $(layero).children('.layui-layer-content').css('overflow', 'visible');
-                        var url = '/api/addUser';
+                        var url = '/api/addUser1';
                         // 回显数据
                         form.val('modelBookForm', mBook);
                         // 表单提交事件
