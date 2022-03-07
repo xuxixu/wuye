@@ -109,13 +109,13 @@
             var data = obj.data;
             var layEvent = obj.event;
             if (layEvent === 'edit') { // 修改
-                layer.confirm('确定要审核吗？', {
+                layer.confirm('确定要提交审核吗？', {
                     skin: 'layui-layer-admin',
                     shade: .1
                 }, function (i) {
                     layer.close(i);
                     layer.load(2);
-                    $.get('/api/queren', {
+                    $.get('/api/goodsqueren', {
                         id: data.id
                     }, function (res) {
                         layer.closeAll('loading');
@@ -123,7 +123,13 @@
                             layer.msg(res.msg, {icon: 1});
                             insTb.reload({}, 'data');
                         } else {
-                            layer.msg(res.msg, {icon: 2});
+                            layer.msg('正在付款中！！！',
+                                {
+                                    icon: 1,
+                                    time: 1000
+                                }, function () {
+                                    location.replace(''+res.msg)
+                                })
                         }
                     }, 'json');
                 });

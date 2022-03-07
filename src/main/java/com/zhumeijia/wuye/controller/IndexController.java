@@ -124,8 +124,8 @@ public class IndexController {
     public String goodstype(){
         return "page/template/goodstype";
     }
-    @GetMapping("/gonggao")
 
+    @GetMapping("/gonggao")
     public String gonggao(){
         return "page/template/gonggao";
     }

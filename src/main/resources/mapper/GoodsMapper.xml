@@ -5,8 +5,26 @@
     <insert id="addGoods" parameterType="com.zhumeijia.wuye.bean.Goods">
         insert into goods values(null,#{name},#{number},#{gtid},#{whid},#{prices})
     </insert>
-    <update id="updateGoods" parameterType="com.zhumeijia.wuye.bean.Goods">
-        update goods set name = #{name} and number = #{number} and gtid=#{gtid} and whid = #{whid} and prices = #{prices} where id = #{id}
+    <update id="updateGoods" parameterType="com.zhumeijia.wuye.bean.User">
+        update goods
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="number != null">
+                number = #{number},
+            </if>
+            <if test="gtid != null">
+                gtid = #{gtid},
+            </if>
+            <if test="whid != null">
+                whid = #{whid},
+            </if>
+            <if test="prices != null">
+                prices = #{prices,jdbcType=INTEGER},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateNumberByName">
         update `goods` set number = #{number} where name = #{name}
@@ -22,7 +40,7 @@
         select * from goods limit #{page},#{limit}
     </select>
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
-        select count(*) from goods where name like #{name}
+        select count(*) from goods where name = #{name}
     </select>
     <select id="findGoods" resultType="com.zhumeijia.wuye.bean.Goods">
         select * from goods where name like '%${name}%' limit #{page},#{limit}
@@ -36,5 +54,6 @@
     <select id="getGoodsByName" resultType="com.zhumeijia.wuye.bean.Goods">
         select * from goods where name = #{name}
     </select>
+
 </mapper>
 

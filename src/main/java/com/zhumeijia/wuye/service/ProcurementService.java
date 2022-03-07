@@ -73,8 +73,20 @@ public class ProcurementService {
         goods.setName(p.getGname());
         goods.setGtid(p.getGtid());
         System.out.println(goods);
-        gdao.addGoods(goods);
+        if(gdao.getCountByName(goods.getName()) == 0)
+        {
+            gdao.addGoods(goods);
+        }else
+        {
+            List<Goods> goods1 = gdao.getGoodsByName(goods.getName());
+            goods1.get(0).setNumber(goods.getNumber()+goods1.get(0).getNumber());
+            gdao.updateGoods(goods1.get(0));
+        }
+
         return dao.queren(id);
     }
 
+    public Procurement getProcurementById(int id) {
+        return dao.findProcurementById(id);
+    }
 }

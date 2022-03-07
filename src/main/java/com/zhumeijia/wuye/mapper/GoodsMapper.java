@@ -20,4 +20,5 @@ public interface GoodsMapper {
     List<Goods> findGoodsById(int id);
 
     List<Goods> getGoodsByName(String gname);
+
 }
