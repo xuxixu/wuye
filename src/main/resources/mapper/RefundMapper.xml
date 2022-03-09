@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.RefundMapper">
+
+    <resultMap id="BaseResultMap" type="com.zhumeijia.wuye.bean.Refund">
+            <id property="id" column="id" jdbcType="INTEGER"/>
+            <result property="outTradeNo" column="out_trade_no" jdbcType="VARCHAR"/>
+            <result property="tradeNo" column="trade_no" jdbcType="INTEGER"/>
+            <result property="totalAmount" column="total_amount" jdbcType="DOUBLE"/>
+    </resultMap>
+
+
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+         *
+        from refund
+        where  id = #{id,jdbcType=INTEGER} 
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete from refund
+        where  id = #{id,jdbcType=INTEGER} 
+    </delete>
+    <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.zhumeijia.wuye.bean.Refund" useGeneratedKeys="true">
+        insert into refund
+        ( id,out_trade_no,trade_no
+        ,total_amount)
+        values (#{id,jdbcType=INTEGER},#{outTradeNo,jdbcType=VARCHAR},#{tradeNo,jdbcType=INTEGER}
+        ,#{totalAmount,jdbcType=DOUBLE})
+    </insert>
+    <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhumeijia.wuye.bean.Refund" useGeneratedKeys="true">
+        insert into refund
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="id != null">id,</if>
+                <if test="outTradeNo != null">out_trade_no,</if>
+                <if test="tradeNo != null">trade_no,</if>
+                <if test="totalAmount != null">total_amount,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="id != null">#{id,jdbcType=INTEGER},</if>
+                <if test="outTradeNo != null">#{outTradeNo,jdbcType=VARCHAR},</if>
+                <if test="tradeNo != null">#{tradeNo,jdbcType=INTEGER},</if>
+                <if test="totalAmount != null">#{totalAmount,jdbcType=DOUBLE},</if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.zhumeijia.wuye.bean.Refund">
+        update refund
+        <set>
+                <if test="outTradeNo != null">
+                    out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+                </if>
+                <if test="tradeNo != null">
+                    trade_no = #{tradeNo,jdbcType=INTEGER},
+                </if>
+                <if test="totalAmount != null">
+                    total_amount = #{totalAmount,jdbcType=DOUBLE},
+                </if>
+        </set>
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.zhumeijia.wuye.bean.Refund">
+        update refund
+        set 
+            out_trade_no =  #{outTradeNo,jdbcType=VARCHAR},
+            trade_no =  #{tradeNo,jdbcType=INTEGER},
+            total_amount =  #{totalAmount,jdbcType=DOUBLE}
+        where   id = #{id,jdbcType=INTEGER} 
+    </update>
+</mapper>
