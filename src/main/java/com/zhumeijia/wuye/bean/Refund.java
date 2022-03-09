@@ -1,53 +1,33 @@
 package com.zhumeijia.wuye.bean;
 
-import lombok.AllArgsConstructor;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @TableName refund
+ */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class Refund {
+public class Refund implements Serializable {
+    /**
+     * 
+     */
+    private Integer id;
 
-  private long id;
-  private String outTradeNo;
-  private long tradeNo;
-  private double totalAmount;
+    /**
+     * 
+     */
+    private String outTradeNo;
 
+    /**
+     * 
+     */
+    private Integer tradeNo;
 
-  public long getId() {
-    return id;
-  }
+    /**
+     * 
+     */
+    private Double totalAmount;
 
-  public void setId(long id) {
-    this.id = id;
-  }
-
-
-  public String getOutTradeNo() {
-    return outTradeNo;
-  }
-
-  public void setOutTradeNo(String outTradeNo) {
-    this.outTradeNo = outTradeNo;
-  }
-
-
-  public long getTradeNo() {
-    return tradeNo;
-  }
-
-  public void setTradeNo(long tradeNo) {
-    this.tradeNo = tradeNo;
-  }
-
-
-  public double getTotalAmount() {
-    return totalAmount;
-  }
-
-  public void setTotalAmount(double totalAmount) {
-    this.totalAmount = totalAmount;
-  }
-
+    private static final long serialVersionUID = 1L;
 }

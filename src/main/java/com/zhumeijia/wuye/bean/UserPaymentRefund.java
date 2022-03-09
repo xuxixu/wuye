@@ -1,54 +1,34 @@
 package com.zhumeijia.wuye.bean;
 
-import lombok.AllArgsConstructor;
+import java.io.Serializable;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
+/**
+ * 
+ * @TableName user_payment_refund
+ */
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class UserPaymentRefund {
+public class UserPaymentRefund implements Serializable {
+    /**
+     * 
+     */
+    private Integer id;
 
-  private long id;
-  private long upid;
-  private long rid;
-  private long status;
-  private User_Payment user_payment;
-  private Refund refund;
+    /**
+     * 
+     */
+    private Integer upid;
 
-  public long getId() {
-    return id;
-  }
+    /**
+     * 
+     */
+    private Integer rid;
 
-  public void setId(long id) {
-    this.id = id;
-  }
-
-
-  public long getUpid() {
-    return upid;
-  }
-
-  public void setUpid(long upid) {
-    this.upid = upid;
-  }
-
-
-  public long getRid() {
-    return rid;
-  }
-
-  public void setRid(long rid) {
-    this.rid = rid;
-  }
-
-
-  public long getStatus() {
-    return status;
-  }
-
-  public void setStatus(long status) {
-    this.status = status;
-  }
-
+    /**
+     * 
+     */
+    private Integer status;
+    private User_Payment user_payment;
+    private Refund refund;
+    private static final long serialVersionUID = 1L;
 }

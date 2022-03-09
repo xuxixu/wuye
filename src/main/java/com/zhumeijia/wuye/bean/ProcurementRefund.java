@@ -1,48 +1,35 @@
 package com.zhumeijia.wuye.bean;
 
+import java.io.Serializable;
+import lombok.Data;
 
-public class ProcurementRefund {
+/**
+ * 
+ * @TableName procurement_refund
+ */
+@Data
+public class ProcurementRefund implements Serializable {
+    /**
+     * 
+     */
+    private Integer id;
 
-  private long id;
-  private long pid;
-  private long rid;
-  private long status;
-  private Procurement procurement;
-  private Refund refund;
+    /**
+     * 
+     */
+    private Integer pid;
 
-  public long getId() {
-    return id;
-  }
+    /**
+     * 
+     */
+    private Integer rid;
 
-  public void setId(long id) {
-    this.id = id;
-  }
-
-
-  public long getPid() {
-    return pid;
-  }
-
-  public void setPid(long pid) {
-    this.pid = pid;
-  }
-
-
-  public long getRid() {
-    return rid;
-  }
-
-  public void setRid(long rid) {
-    this.rid = rid;
-  }
-
-
-  public long getStatus() {
-    return status;
-  }
-
-  public void setStatus(long status) {
-    this.status = status;
-  }
+    /**
+     * 
+     */
+    private Integer status;
+    private Procurement procurement;
+    private Refund refund;
+    private static final long serialVersionUID = 1L;
 
 }
