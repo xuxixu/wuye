@@ -99,7 +99,7 @@ public class PayController {
         String num = df1.format(new Date());
         request.setBizContent("{\"out_trade_no\":\"" + num + "\","
                 + "\"total_amount\":\"" + procurement.getTotalmoney() + "\","
-                + "\"subject\":\"" +"交"+procurement.getGname() + "\","
+                + "\"subject\":\"" +"货物名称："+procurement.getGname() + "\","
                 + "\"body\":\"" + procurement.getGname() + "\","
                 + "\"time_expire\":\"" + time_expire + "\","
                 + "\"product_code\":\"FAST_INSTANT_TRADE_PAY\"}");
