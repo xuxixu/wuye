@@ -1,10 +1,16 @@
 package com.zhumeijia.wuye.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.alipay.api.AlipayApiException;
 import com.alipay.api.AlipayClient;
 import com.alipay.api.DefaultAlipayClient;
 import com.alipay.api.internal.util.AlipaySignature;
 import com.alipay.api.request.AlipayTradePagePayRequest;
+import com.alipay.api.request.AlipayTradePayRequest;
+import com.alipay.api.request.AlipayTradeRefundRequest;
+import com.alipay.api.response.AlipayTradePagePayResponse;
+import com.alipay.api.response.AlipayTradePayResponse;
+import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.zhumeijia.wuye.bean.Procurement;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.bean.User_Payment;
@@ -110,7 +116,36 @@ public class PayController {
         return resBody;
 
     }
+    @RequestMapping(value = "/api/refund", method = RequestMethod.GET)
+    @ResponseBody
+    public ResBody refund(@RequestParam("out_trade_no") String out_trade_no,@RequestParam("refund_amount") String refund_amount)
+    {
+        ResBody resBody = new ResBody();
+        AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
 
+        Map map = new HashMap();
+        map.put("refund_amount",refund_amount);
+        map.put("out_trade_no",out_trade_no);
+        request.setBizContent(JSON.toJSONString(map));
+        AlipayClient alipayClient = new DefaultAlipayClient(GATEWAY_URL, APP_ID, APP_PRIVATE_KEY, FORMAT, CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE);
+        AlipayTradeRefundResponse response = null;
+        try {
+            response = alipayClient.execute(request);
+            if(response.getMsg().equals("Success"))
+            {
+                resBody.setCode(200);
+                resBody.setMsg("添加成功");
+                return resBody;
+            }
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        resBody.setCode(500);
+        resBody.setMsg("失败");
+        return resBody;
+
+
+    }
     @RequestMapping("/api/userjiaofei")
     @ResponseBody
     public ResBody alipay_ajax_buy(@RequestParam("id") int id, HttpServletResponse httpResponse, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException, ServletException {
