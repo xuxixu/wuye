@@ -115,6 +115,16 @@ public class IndexController {
         return "page/template/procurement";
     }
 
+    @GetMapping("/userrefund")
+    public String userrefund(){
+        return "page/template/userrefund";
+    }
+
+    @GetMapping("/procurementrefund")
+    public String procurementrefund(){
+        return "page/template/procurementrefund";
+    }
+
     @GetMapping("/adoption")
     public String adoption(){
         return "page/template/adoption";
