@@ -14,6 +14,9 @@
     <update id="jiaofei">
         update user_payment set status = 1 where id = #{id}
     </update>
+    <update id="updateStatusById">
+        update user_payment set status = 0 where id = #{upid}
+    </update>
     <delete id="delUser_Payment" parameterType="int">
         DELETE from user_payment where id=#{id}
     </delete>

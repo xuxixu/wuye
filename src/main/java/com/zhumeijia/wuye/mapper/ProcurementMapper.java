@@ -19,4 +19,5 @@ public interface ProcurementMapper {
     public int queren(int id);
    Procurement findProcurementById(int id);
 
+    void updateStatusById(Integer pid);
 }

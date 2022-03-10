@@ -18,6 +18,24 @@
         from user_payment_refund
         where  id = #{id,jdbcType=INTEGER} 
     </select>
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from user_payment_refund
+    </select>
+    <select id="getAllUserPaymentRefund" resultType="com.zhumeijia.wuye.bean.UserPaymentRefund">
+        select
+            *
+        from user_payment_refund
+        where  1=1 limit #{i},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer">
+        select count(*) from user_payment_refund where status = #{status}
+    </select>
+    <select id="findUserPaymentRefund" resultType="com.zhumeijia.wuye.bean.UserPaymentRefund">
+        select * from user_payment_refund where status = #{status} limit #{i},#{limit}
+    </select>
+    <select id="findUserPaymentRefundById" resultType="com.zhumeijia.wuye.bean.UserPaymentRefund">
+        select * from user_payment_refund where id = #{id}
+    </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from user_payment_refund
@@ -27,8 +45,8 @@
         insert into user_payment_refund
         ( id,upid,rid
         ,status)
-        values (#{id,jdbcType=INTEGER},#{upid,jdbcType=INTEGER},#{rid,jdbcType=INTEGER}
-        ,#{status,jdbcType=INTEGER})
+        values (null,#{upid,jdbcType=INTEGER},#{rid,jdbcType=INTEGER}
+        ,0)
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhumeijia.wuye.bean.UserPaymentRefund" useGeneratedKeys="true">
         insert into user_payment_refund

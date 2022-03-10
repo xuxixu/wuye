@@ -17,6 +17,25 @@
         from procurement_refund
         where  id = #{id,jdbcType=INTEGER} 
     </select>
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from procurement_refund
+    </select>
+    <select id="getAllProcurementRefund" resultType="com.zhumeijia.wuye.bean.ProcurementRefund">
+        select
+            *
+        from procurement_refund
+        where  1=1 limit #{i},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer">
+        select count(*) from procurement_refund where status = #{status}
+    </select>
+    <select id="findProcurementRefund" resultType="com.zhumeijia.wuye.bean.ProcurementRefund">
+        select * from procurement_refund where status = #{valueOf} limit #{i},#{limit}
+    </select>
+    <select id="findProcurementRefundById" resultType="com.zhumeijia.wuye.bean.ProcurementRefund">
+        select * from procurement_refund where id = #{id}
+    </select>
+
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
         delete from procurement_refund
@@ -26,8 +45,8 @@
         insert into procurement_refund
         ( id,pid,rid
         ,status)
-        values (#{id,jdbcType=INTEGER},#{pid,jdbcType=INTEGER},#{rid,jdbcType=INTEGER}
-        ,#{status,jdbcType=INTEGER})
+        values (null,#{pid,jdbcType=INTEGER},#{rid,jdbcType=INTEGER}
+        ,0)
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhumeijia.wuye.bean.ProcurementRefund" useGeneratedKeys="true">
         insert into procurement_refund

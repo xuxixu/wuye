@@ -63,7 +63,7 @@
     {{d.user_payment.payment.name}}
 </script>
 <script type="text/html" id="templet3">
-    {{d.refund.total_amount}}
+    {{d.user_payment.value}}
 </script>
 <!-- js部分 -->
 <script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
@@ -91,7 +91,7 @@
                     {field: 'id', title: 'id'}
                     ,{field: 'payment', sort: true, templet: '#templet1', title: '费用类型'}
                     ,{field: 'user', sort: true, templet: '#templet2', title: '用户名'}
-                    ,{field: 'total_amount', sort: true, templet: '#templet3', title: '退款金额'}
+                    ,{field: 'value', sort: true, templet: '#templet3', title: '退款金额'}
                     ,{field: 'time', sort: true, templet: function (d) {
                         return util.toDateString(d.user_payment.time);
                     },title: '缴费时间'}

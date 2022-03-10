@@ -22,7 +22,7 @@ public class Refund implements Serializable {
     /**
      * 
      */
-    private Integer tradeNo;
+    private String tradeNo;
 
     /**
      * 

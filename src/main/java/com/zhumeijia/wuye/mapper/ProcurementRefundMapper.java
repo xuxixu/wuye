@@ -1,6 +1,9 @@
 package com.zhumeijia.wuye.mapper;
 
 import com.zhumeijia.wuye.bean.ProcurementRefund;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 /**
 * @author xuxin
@@ -8,6 +11,7 @@ import com.zhumeijia.wuye.bean.ProcurementRefund;
 * @createDate 2022-03-09 17:06:12
 * @Entity com.zhumeijia.wuye.bean.ProcurementRefund
 */
+@Mapper
 public interface ProcurementRefundMapper {
 
     int deleteByPrimaryKey(Long id);
@@ -22,4 +26,13 @@ public interface ProcurementRefundMapper {
 
     int updateByPrimaryKey(ProcurementRefund record);
 
+    int getCountAll();
+
+    List<ProcurementRefund> getAllProcurementRefund(int i, int limit);
+
+    int getCountByName(String valueOf);
+
+    List<ProcurementRefund> findProcurementRefund(int i, int limit, int valueOf);
+
+    ProcurementRefund findProcurementRefundById(int id);
 }

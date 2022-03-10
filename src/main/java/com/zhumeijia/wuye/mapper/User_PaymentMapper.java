@@ -1,5 +1,6 @@
 package com.zhumeijia.wuye.mapper;
 
+import com.zhumeijia.wuye.bean.Procurement;
 import com.zhumeijia.wuye.bean.User_Payment;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -31,4 +32,6 @@ public interface User_PaymentMapper {
     List<User_Payment> findUser_PaymentStatus(@Param("page") int i,@Param("limit") int limit,@Param("name") String name,@Param("uid") Integer id);
 
     User_Payment getPaymentById(int id);
+
+    void updateStatusById(Integer upid);
 }

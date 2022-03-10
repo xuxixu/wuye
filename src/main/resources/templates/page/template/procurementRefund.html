@@ -60,7 +60,7 @@
     {{d.procurement.gname}}
 </script>
 <script type="text/html" id="templet2">
-    {{d.refund.total_amount}}
+    {{d.procurement.totalmoney}}
 </script>
 <!-- js部分 -->
 <script type="text/javascript" src="../../assets/libs/layui/layui.js"></script>
@@ -87,7 +87,7 @@
                 [
                     {field: 'id', title: 'id'}
                     ,{field: 'gname', sort: true, templet: '#templet1', title: '退款货物名'}
-                    ,{field: 'total_amount', sort: true, templet: '#templet2', title: '退款金额'}
+                    ,{field: 'value', sort: true, templet: '#templet2', title: '退款金额'}
                     ,{field: 'time', sort: true, templet: function (d) {
                         return util.toDateString(d.procurement.time);
                     },title: '缴费时间'}

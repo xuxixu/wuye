@@ -11,11 +11,12 @@ import com.alipay.api.request.AlipayTradeRefundRequest;
 import com.alipay.api.response.AlipayTradePagePayResponse;
 import com.alipay.api.response.AlipayTradePayResponse;
 import com.alipay.api.response.AlipayTradeRefundResponse;
-import com.zhumeijia.wuye.bean.Procurement;
-import com.zhumeijia.wuye.bean.ResBody;
-import com.zhumeijia.wuye.bean.User_Payment;
+import com.zhumeijia.wuye.bean.*;
+import com.zhumeijia.wuye.mapper.RefundMapper;
+import com.zhumeijia.wuye.service.ProcurementRefundService;
 import com.zhumeijia.wuye.service.ProcurementService;
 import com.zhumeijia.wuye.service.User_PaymentService;
+import com.zhumeijia.wuye.service.User_Payment_RefundService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -37,6 +38,12 @@ public class PayController {
     User_PaymentService service;
     @Autowired
     ProcurementService pservice;
+    @Autowired
+    ProcurementRefundService prservice;
+    @Autowired
+    User_Payment_RefundService uprservice;
+    @Autowired
+    RefundMapper rdao;
 //    应用id
     @Value("${alipay_test.APP_ID}")
     private String APP_ID;
@@ -146,6 +153,74 @@ public class PayController {
 
 
     }
+    @RequestMapping(value = "/api/RefundUser", method = RequestMethod.GET)
+    @ResponseBody
+    public ResBody RefundUser(@RequestParam int id){
+        ResBody resBody = new ResBody();
+        AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
+        UserPaymentRefund user_payment_refund = uprservice.getUserPaymentRefundById(id);
+        Refund goodstypeById = rdao.findGoodstypeById(user_payment_refund.getRid());
+        Map map = new HashMap();
+        map.put("refund_amount",goodstypeById.getTotalAmount());
+        map.put("out_trade_no",goodstypeById.getOutTradeNo());
+        map.put("trade_no",goodstypeById.getTradeNo());
+        request.setBizContent(JSON.toJSONString(map));
+
+        AlipayClient alipayClient = new DefaultAlipayClient(GATEWAY_URL, APP_ID, APP_PRIVATE_KEY, FORMAT, CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE);
+        AlipayTradeRefundResponse response = null;
+        try {
+            response = alipayClient.execute(request);
+            if(response.getMsg().equals("Success"))
+            {
+                user_payment_refund.setStatus(1);
+                uprservice.updateStatusByUserPaymentRefund(user_payment_refund);
+                resBody.setCode(200);
+                resBody.setMsg("添加成功");
+                return resBody;
+            }
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        resBody.setCode(500);
+        resBody.setMsg("失败");
+        return resBody;
+
+
+    }
+    @RequestMapping(value = "/api/RefundProcurement", method = RequestMethod.GET)
+    @ResponseBody
+    public ResBody RefundProcurement(@RequestParam int id){
+        ResBody resBody = new ResBody();
+        AlipayTradeRefundRequest request = new AlipayTradeRefundRequest();
+        ProcurementRefund procurementRefund = prservice.getProcurementRefundById(id);
+        Refund goodstypeById = rdao.findGoodstypeById(procurementRefund.getRid());
+        Map map = new HashMap();
+        map.put("refund_amount",goodstypeById.getTotalAmount());
+        map.put("out_trade_no",goodstypeById.getOutTradeNo());
+        map.put("trade_no",goodstypeById.getTradeNo());
+        request.setBizContent(JSON.toJSONString(map));
+
+        AlipayClient alipayClient = new DefaultAlipayClient(GATEWAY_URL, APP_ID, APP_PRIVATE_KEY, FORMAT, CHARSET, ALIPAY_PUBLIC_KEY, SIGN_TYPE);
+        AlipayTradeRefundResponse response = null;
+        try {
+            response = alipayClient.execute(request);
+            if(response.getMsg().equals("Success"))
+            {
+                procurementRefund.setStatus(1);
+                prservice.updateStatusByProcurementRefund(procurementRefund);
+                resBody.setCode(200);
+                resBody.setMsg("添加成功");
+                return resBody;
+            }
+        } catch (AlipayApiException e) {
+            e.printStackTrace();
+        }
+        resBody.setCode(500);
+        resBody.setMsg("失败");
+        return resBody;
+
+
+    }
     @RequestMapping("/api/userjiaofei")
     @ResponseBody
     public ResBody alipay_ajax_buy(@RequestParam("id") int id, HttpServletResponse httpResponse, HttpServletRequest httpServletRequest, HttpSession httpSession) throws IOException, ServletException {
@@ -231,10 +306,16 @@ public class PayController {
             System.out.println("商户订单号=" + out_trade_no);
             System.out.println("支付宝交易号=" + trade_no);
             System.out.println("付款金额=" + total_amount);
-
+            Refund refund = new Refund();
+            refund.setOutTradeNo(out_trade_no);
+            refund.setTotalAmount(Double.valueOf(total_amount));
+            refund.setTradeNo(trade_no);
+            rdao.insert(refund);
+            Integer id = (Integer) httpSession.getAttribute("id");
+            uprservice.addUser_Refund(id,refund);
             //支付成功，修复支付状态
 //            payService.updateById(Integer.valueOf(out_trade_no));
-            service.jiaofei((Integer) httpSession.getAttribute("id"));
+            service.jiaofei(id);
             return "page/system/index";//跳转付款成功页面
         }else
         {
@@ -248,10 +329,16 @@ public class PayController {
             System.out.println("商户订单号=" + out_trade_no);
             System.out.println("支付宝交易号=" + trade_no);
             System.out.println("付款金额=" + total_amount);
-
+            Refund refund = new Refund();
+            refund.setOutTradeNo(out_trade_no);
+            refund.setTotalAmount(Double.valueOf(total_amount));
+            refund.setTradeNo(trade_no);
+            rdao.insert(refund);
+            Integer id = (Integer) httpSession.getAttribute("id");
+            prservice.addProcurementRefund(id,refund);
             //支付成功，修复支付状态
 //            payService.updateById(Integer.valueOf(out_trade_no));
-            pservice.queren((Integer) httpSession.getAttribute("id"));
+            pservice.queren(id);
             return "page/template/index";//跳转付款成功页面
         }
     }

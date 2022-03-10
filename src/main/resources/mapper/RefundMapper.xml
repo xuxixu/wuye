@@ -7,17 +7,21 @@
     <resultMap id="BaseResultMap" type="com.zhumeijia.wuye.bean.Refund">
             <id property="id" column="id" jdbcType="INTEGER"/>
             <result property="outTradeNo" column="out_trade_no" jdbcType="VARCHAR"/>
-            <result property="tradeNo" column="trade_no" jdbcType="INTEGER"/>
+            <result property="tradeNo" column="trade_no" jdbcType="VARCHAR"/>
             <result property="totalAmount" column="total_amount" jdbcType="DOUBLE"/>
     </resultMap>
-
-
 
     <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
         select
          *
         from refund
         where  id = #{id,jdbcType=INTEGER} 
+    </select>
+    <select id="findGoodstypeById" resultType="com.zhumeijia.wuye.bean.Refund">
+        select * from refund where id = #{rid}
+    </select>
+    <select id="findRefundByOut_Trade_NO" resultType="com.zhumeijia.wuye.bean.Refund">
+        select * from refund where out_trade_no = #{outTradeNo}
     </select>
 
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
@@ -28,7 +32,7 @@
         insert into refund
         ( id,out_trade_no,trade_no
         ,total_amount)
-        values (#{id,jdbcType=INTEGER},#{outTradeNo,jdbcType=VARCHAR},#{tradeNo,jdbcType=INTEGER}
+        values (null,#{outTradeNo,jdbcType=VARCHAR},#{tradeNo,jdbcType=VARCHAR}
         ,#{totalAmount,jdbcType=DOUBLE})
     </insert>
     <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.zhumeijia.wuye.bean.Refund" useGeneratedKeys="true">
@@ -42,7 +46,7 @@
         <trim prefix="values (" suffix=")" suffixOverrides=",">
                 <if test="id != null">#{id,jdbcType=INTEGER},</if>
                 <if test="outTradeNo != null">#{outTradeNo,jdbcType=VARCHAR},</if>
-                <if test="tradeNo != null">#{tradeNo,jdbcType=INTEGER},</if>
+                <if test="tradeNo != null">#{tradeNo,jdbcType=VARCHAR},</if>
                 <if test="totalAmount != null">#{totalAmount,jdbcType=DOUBLE},</if>
         </trim>
     </insert>
@@ -53,7 +57,7 @@
                     out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
                 </if>
                 <if test="tradeNo != null">
-                    trade_no = #{tradeNo,jdbcType=INTEGER},
+                    trade_no = #{tradeNo,jdbcType=VARCHAR},
                 </if>
                 <if test="totalAmount != null">
                     total_amount = #{totalAmount,jdbcType=DOUBLE},
@@ -65,7 +69,7 @@
         update refund
         set 
             out_trade_no =  #{outTradeNo,jdbcType=VARCHAR},
-            trade_no =  #{tradeNo,jdbcType=INTEGER},
+            trade_no =  #{tradeNo,jdbcType=VARCHAR},
             total_amount =  #{totalAmount,jdbcType=DOUBLE}
         where   id = #{id,jdbcType=INTEGER} 
     </update>
