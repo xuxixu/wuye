@@ -1,0 +1,34 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zhumeijia.wuye.mapper.RoleMapper">
+    <insert id="addRole" parameterType="com.zhumeijia.wuye.bean.Role">
+        insert into role values(null,#{name})
+    </insert>
+    <update id="updateRole" parameterType="com.zhumeijia.wuye.bean.Role">
+        update role set name = #{name} where id = #{id}
+    </update>
+    <delete id="delRole" parameterType="int">
+        DELETE from role where id=#{id}
+    </delete>
+
+    <select id="getCountAll" resultType="java.lang.Integer">
+        select count(*) from role
+    </select>
+    <select id="getAllRole" resultType="com.zhumeijia.wuye.bean.Role">
+        select * from role limit #{page},#{limit}
+    </select>
+    <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
+        select count(*) from role where name like '%${name}%'
+    </select>
+    <select id="findRole" resultType="com.zhumeijia.wuye.bean.Role">
+        select * from role where name like '%${name}%' limit #{page},#{limit}
+    </select>
+    <select id="getAllRoles" resultType="com.zhumeijia.wuye.bean.Role">
+        select * from role
+    </select>
+    <select id="findRoleById" resultType="com.zhumeijia.wuye.bean.Role">
+        select * from role where id = #{pid}
+    </select>
+</mapper>
+

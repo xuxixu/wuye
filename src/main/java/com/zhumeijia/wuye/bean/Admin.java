@@ -14,4 +14,6 @@ public class Admin {
     String phone;
     Integer sex;
     Integer id;
+    Integer rid;
+    Role role;
 }

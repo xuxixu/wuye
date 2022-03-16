@@ -105,6 +105,16 @@ public class IndexController {
         return "page/template/room";
     }
 
+    @GetMapping("/admin")
+    public String admin(){
+        return "page/template/admin";
+    }
+
+    @GetMapping("/rolelist")
+    public String role(){
+        return "page/template/role";
+    }
+
     @GetMapping("/goods")
     public String goods(){
         return "page/template/goods";
