@@ -4,6 +4,8 @@ import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.bean.ProcurementRefund;
 import com.zhumeijia.wuye.service.ProcurementRefundService;
 import com.zhumeijia.wuye.service.User_Payment_RefundService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -15,7 +17,7 @@ import java.util.List;
 public class Procurement_RefundController {
     @Autowired
     ProcurementRefundService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(Procurement_RefundController.class);
     @GetMapping("/api/getAllProcurementRefund")
     public ResBody getAllProcurementRefunds(@RequestParam int page,
                                    @RequestParam int limit) {

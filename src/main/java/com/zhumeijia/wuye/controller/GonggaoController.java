@@ -5,6 +5,8 @@ import com.zhumeijia.wuye.bean.Building;
 import com.zhumeijia.wuye.bean.Gonggao;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.GonggaoService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ import java.util.List;
 public class GonggaoController {
     @Autowired
     GonggaoService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(GonggaoController.class);
     @GetMapping("/api/getAllGonggaos")
     public ResBody getAllGonggaos(@RequestParam int page,
                                    @RequestParam int limit) {

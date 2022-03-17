@@ -4,6 +4,8 @@ import com.zhumeijia.wuye.bean.Building;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.bean.User;
 import com.zhumeijia.wuye.service.UserService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
     @GetMapping("/api/getUsers")
     public ResBody getUsers(@RequestParam int page,
                                    @RequestParam int limit) {

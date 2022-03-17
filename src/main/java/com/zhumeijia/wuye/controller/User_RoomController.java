@@ -6,6 +6,8 @@ import com.zhumeijia.wuye.bean.User_Car;
 import com.zhumeijia.wuye.bean.User_Room;
 import com.zhumeijia.wuye.service.User_CarService;
 import com.zhumeijia.wuye.service.User_RoomService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public class User_RoomController {
     @Autowired
     User_RoomService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(User_RoomController.class);
     @GetMapping("/api/findRoomRecordById")
     public ResBody findRoomRecordById(@RequestParam int id,@RequestParam int page,@RequestParam int limit){
         ResBody resBody = new ResBody();

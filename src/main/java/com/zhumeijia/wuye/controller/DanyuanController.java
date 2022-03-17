@@ -5,6 +5,8 @@ import com.zhumeijia.wuye.bean.Danyuan;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.BuildingService;
 import com.zhumeijia.wuye.service.DanyuanService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,7 +16,7 @@ import java.util.List;
 public class DanyuanController {
     @Autowired
     DanyuanService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(DanyuanController.class);
     @GetMapping("/api/getAllDanyuans")
     public ResBody getAllDanyuans(@RequestParam int page,
                                    @RequestParam int limit) {

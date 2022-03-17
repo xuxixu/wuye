@@ -3,6 +3,8 @@ package com.zhumeijia.wuye.controller;
 import com.zhumeijia.wuye.bean.Warehouse;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.WarehouseService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +14,7 @@ import java.util.List;
 public class WarehouseController {
     @Autowired
     WarehouseService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(WarehouseController.class);
     @GetMapping("/api/getAllWarehouse")
     public ResBody getAllWarehouses(@RequestParam int page,
                                    @RequestParam int limit) {

@@ -2,6 +2,8 @@ package com.zhumeijia.wuye.controller;
 
 import com.zhumeijia.wuye.bean.*;
 import com.zhumeijia.wuye.service.User_PaymentService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,7 +15,7 @@ import java.util.List;
 public class User_PaymentController {
     @Autowired
     User_PaymentService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(User_PaymentController.class);
     @GetMapping("/api/getAllPaymentDetails")
     public ResBody getAllPaymentDetails(@RequestParam int page,
                                         @RequestParam int limit, HttpSession session) {

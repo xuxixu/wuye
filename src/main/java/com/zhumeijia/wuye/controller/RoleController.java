@@ -4,6 +4,8 @@ import com.zhumeijia.wuye.bean.Admin;
 import com.zhumeijia.wuye.bean.Role;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.RoleService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +17,7 @@ import java.util.List;
 public class RoleController {
     @Autowired
     RoleService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(RoleController.class);
     @GetMapping("/api/getAllRoles")
     public ResBody getAllRoles(@RequestParam int page,
                                    @RequestParam int limit) {

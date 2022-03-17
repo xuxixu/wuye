@@ -3,6 +3,8 @@ package com.zhumeijia.wuye.controller;
 import com.zhumeijia.wuye.bean.UserPaymentRefund;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.User_Payment_RefundService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +14,7 @@ import java.util.List;
 public class User_Payment_RefundController {
     @Autowired
     User_Payment_RefundService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(User_Payment_RefundController.class);
     @GetMapping("/api/getAllRefunduser")
     public ResBody getAllUserPaymentRefunds(@RequestParam int page,
                                    @RequestParam int limit) {

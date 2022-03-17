@@ -3,6 +3,8 @@ package com.zhumeijia.wuye.controller;
 import com.zhumeijia.wuye.bean.Building;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.BuildingService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,8 @@ import java.util.List;
 public class BuildingController {
     @Autowired
     BuildingService service;
+
+    private static final Logger LOG = LoggerFactory.getLogger(BuildingController.class);
 
     @GetMapping("/api/getAllBuildings")
     public ResBody getAllBuildings(@RequestParam int page,

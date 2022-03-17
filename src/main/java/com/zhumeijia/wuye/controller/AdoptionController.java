@@ -3,6 +3,8 @@ package com.zhumeijia.wuye.controller;
 import com.zhumeijia.wuye.bean.Adoption;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.AdoptionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,6 +18,7 @@ import java.util.List;
 public class AdoptionController {
     @Autowired
     AdoptionService service;
+    private static final Logger LOG = LoggerFactory.getLogger(AdoptionController.class);
 
     @GetMapping("/api/getAllAdoption")
     public ResBody getAllAdoption(@RequestParam int page,

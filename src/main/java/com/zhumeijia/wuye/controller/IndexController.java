@@ -3,6 +3,8 @@ package com.zhumeijia.wuye.controller;
 import com.zhumeijia.wuye.bean.Gonggao;
 import com.zhumeijia.wuye.bean.User;
 import com.zhumeijia.wuye.service.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 @Controller
 public class IndexController {
+    private static final Logger LOG = LoggerFactory.getLogger(IndexController.class);
     @Autowired
     IndexService service;
     @Autowired

@@ -17,6 +17,8 @@ import com.zhumeijia.wuye.service.ProcurementRefundService;
 import com.zhumeijia.wuye.service.ProcurementService;
 import com.zhumeijia.wuye.service.User_PaymentService;
 import com.zhumeijia.wuye.service.User_Payment_RefundService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -33,7 +35,7 @@ import java.util.*;
 
 @Controller
 public class PayController {
-
+    private static final Logger LOG = LoggerFactory.getLogger(PayController.class);
     @Autowired
     User_PaymentService service;
     @Autowired

@@ -5,6 +5,8 @@ import com.zhumeijia.wuye.bean.Room;
 import com.zhumeijia.wuye.bean.Tousu;
 import com.zhumeijia.wuye.bean.User;
 import com.zhumeijia.wuye.service.TousuService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +18,7 @@ import java.util.List;
 public class TousuController {
     @Autowired
     TousuService service;
-
+    private static final Logger LOG = LoggerFactory.getLogger(TousuController.class);
     @GetMapping("/api/getAllTousus")
     public ResBody getAllTousus(@RequestParam int page,
                                    @RequestParam int limit) {
