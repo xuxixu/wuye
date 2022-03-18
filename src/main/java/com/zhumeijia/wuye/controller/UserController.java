@@ -33,6 +33,7 @@ public class UserController {
     @PostMapping("/api/addUser")
     public ResBody addUser(@RequestBody User user,@RequestParam("newpassword") String newpassword) {
         System.out.println(user);
+        int count = service.getCountByName(user.getUsername());
         ResBody resBody = new ResBody();
 /*        if(newpassword.equals(user.getPassword())) {
             int i = service.addUser(user);
@@ -49,16 +50,25 @@ public class UserController {
     @PostMapping("/api/addUser1")
     public ResBody addUser1(@RequestBody User user) {
 
+        int count = service.getCountByName(user.getUsername());
         ResBody resBody = new ResBody();
-        int i = service.addUser(user);
-        if (i == 1) {
-            resBody.setCode(200);
-            resBody.setMsg("添加成功");
-            return resBody;
+        if (count == 0)
+        {
+            int i = service.addUser(user);
+            if (i == 1) {
+                resBody.setCode(200);
+                resBody.setMsg("添加成功");
+                return resBody;
+            }
+
+            resBody.setCode(500);
+            resBody.setMsg("添加失败");
+        }else {
+            resBody.setCode(500);
+            resBody.setMsg("用户名已存在");
         }
 
-        resBody.setCode(500);
-        resBody.setMsg("添加失败");
+
         return resBody;
     }
 

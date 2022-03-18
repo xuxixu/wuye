@@ -118,8 +118,7 @@
             cellMinWidth: 100,
             cols: [
                 [
-                    {field: 'id', title: 'id'}
-                    ,{field: 'content', sort: true, title: '投诉内容'}
+                    {field: 'content', sort: true, title: '投诉内容'}
                     ,{field: 'create', sort: true,templet: '#templet_create', title: '发布者'}
                     ,{field: 'time', sort: true,templet: function (d) {
                         return util.toDateString(d.time);

@@ -158,7 +158,14 @@
             <label class="layui-form-label">密码</label>
             <div class="layui-input-block">
                 <input name="password" placeholder="密码" type="password" class="layui-input" maxlength="20"
-                       lay-verType="tips" lay-verify="password" required/>
+                       lay-verType="tips" lay-verify="required|psw" required/>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">确认密码:</label>
+            <div class="layui-input-block">
+                <input type="password" name="rePsw" placeholder="请再次输入新密码" class="layui-input"
+                       lay-verType="tips" lay-verify="required|repsw" required/>
             </div>
         </div>
         <div class="layui-form-item">
@@ -208,8 +215,7 @@
             cellMinWidth: 100,
             cols: [
                 [
-                    {type: 'numbers', title: '#'}
-                    ,{field: 'username', sort: true, title: '用户名'}
+                    {field: 'username', sort: true, title: '用户名'}
                     ,{field: 'phone', sort: true, title: '手机号'}
                     ,{field: 'sex', sort: true, templet: '#building_2', title: '性别'}
                     ,{field: 'car', sort: true, templet: function (d) {
@@ -263,6 +269,17 @@
                 doDelUser(data.id);
             }
         });
+
+        // 添加表单验证方法
+        form.verify({
+            psw: [/^[\S]{5,12}$/, '密码必须5到12位，且不能出现空格'],
+            repsw: function (t) {
+                if (t !== $('#form-psw input[name=password]').val()) {
+                    return '两次密码输入不一致';
+                }
+            }
+        });
+
         function showPaymentModel(data) {
             admin.open({
                 type: 1,

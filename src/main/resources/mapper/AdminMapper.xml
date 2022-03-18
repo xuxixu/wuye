@@ -44,7 +44,7 @@
         select * from admin where username = #{username} and password = #{password}
     </select>
     <select id="findAdminById" resultType="com.zhumeijia.wuye.bean.Admin" parameterType="java.lang.Integer">
-        select * from admin where id = #{id}
+        select * from admin where id = #{createBy}
     </select>
     <select id="getCountAll" resultType="java.lang.Integer">
         select count(*) from admin

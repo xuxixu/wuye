@@ -85,8 +85,7 @@
             cellMinWidth: 100,
             cols: [
                 [
-                    {field: 'id', title: 'id'}
-                    ,{field: 'gname', sort: true, templet: '#templet1', title: '退款货物名'}
+                    {field: 'gname', sort: true, templet: '#templet1', title: '退款货物名'}
                     ,{field: 'value', sort: true, templet: '#templet2', title: '退款金额'}
                     ,{field: 'time', sort: true, templet: function (d) {
                         return util.toDateString(d.procurement.time);

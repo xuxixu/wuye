@@ -73,7 +73,8 @@ public class ProcurementService {
         goods.setName(p.getGname());
         goods.setGtid(p.getGtid());
         System.out.println(goods);
-        if(gdao.getCountByName(goods.getName()) == 0)
+
+        if(gdao.getCountByName(goods.getName()) == 0 || gdao.getCountByWhid((int) goods.getWhid()) == 0 )
         {
             gdao.addGoods(goods);
         }else

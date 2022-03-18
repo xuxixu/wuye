@@ -21,4 +21,6 @@ public interface GoodsMapper {
 
     List<Goods> getGoodsByName(String gname);
 
+    int getCountByWhid(int whid);
+
 }

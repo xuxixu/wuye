@@ -99,4 +99,8 @@ public class UserService {
             return null;
         }
     }
+
+    public int getCountByName(String username) {
+        return dao.getCountByName(username);
+    }
 }

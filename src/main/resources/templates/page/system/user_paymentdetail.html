@@ -85,8 +85,7 @@
             cellMinWidth: 100,
             cols: [
                 [
-                    {field: 'id', title: 'id'}
-                    ,{field: 'payment', sort: true, templet: '#templet1', title: '缴费名'}
+                    {field: 'payment', sort: true, templet: '#templet1', title: '缴费名'}
                     ,{field: 'value', sort: true, title: '缴费值'}
                     ,{field: 'time', sort: true, templet: function (d) {
                         return util.toDateString(d.time);

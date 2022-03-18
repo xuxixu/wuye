@@ -42,6 +42,9 @@
     <select id="getCountByName" resultType="java.lang.Integer" parameterType="java.lang.String">
         select count(*) from goods where name = #{name}
     </select>
+    <select id="getCountByWhid" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from goods where whid = #{whid}
+    </select>
     <select id="findGoods" resultType="com.zhumeijia.wuye.bean.Goods">
         select * from goods where name like '%${name}%' limit #{page},#{limit}
     </select>
