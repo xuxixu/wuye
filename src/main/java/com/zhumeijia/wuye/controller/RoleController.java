@@ -17,16 +17,25 @@ import java.util.List;
 public class RoleController {
     @Autowired
     RoleService service;
+
     private static final Logger LOG = LoggerFactory.getLogger(RoleController.class);
     @GetMapping("/api/getAllRoles")
     public ResBody getAllRoles(@RequestParam int page,
-                                   @RequestParam int limit) {
+                                   @RequestParam int limit,HttpSession session) {
         ResBody resBody = new ResBody();
+        Admin admin = (Admin) session.getAttribute("admin");
+        if(service.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
         int count = service.getCount();
         List<Role> list= service.getAllRoles(page, limit);
         resBody.setCount(count);
         resBody.setData(list);
         resBody.setCode(0);
+        }else
+        {
+            resBody.setCode(500);
+            resBody.setMsg("非管理员不能查看");
+        }
         return resBody;
     }
 
@@ -34,7 +43,7 @@ public class RoleController {
     public ResBody addBuilding(@RequestBody Role role, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if(admin.getRid() == 1)
+        if(service.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             int i = service.addRole(role);
             if (i == 1){
@@ -57,7 +66,7 @@ public class RoleController {
     public ResBody updateRole(@RequestBody Role role, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if(admin.getRid() == 1)
+        if(service.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             int i = service.updateRole(role);
             if (i == 1){
@@ -80,7 +89,7 @@ public class RoleController {
     public ResBody delRole(@RequestParam int id, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if(admin.getRid() == 1)
+        if(service.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             int i = service.delRole(id);
             if (i == 1){
@@ -101,22 +110,38 @@ public class RoleController {
     @GetMapping("/api/findRole")
     public ResBody findRole(@RequestParam int page,
                                 @RequestParam int limit,
-                                @RequestParam String name) {
+                                @RequestParam String name,HttpSession session) {
         ResBody resBody = new ResBody();
+        Admin admin = (Admin) session.getAttribute("admin");
+        if(service.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
         int count = service.getCount(name);
         List<Role> list= service.findRole(page, limit,name);
         resBody.setCount(count);
         resBody.setData(list);
         resBody.setCode(0);
+    }else
+    {
+        resBody.setCode(500);
+        resBody.setMsg("不能查看!非管理员不能查看");
+    }
         return resBody;
     }
 
     @GetMapping("/ajax/getAllRoles")
-    public ResBody getAllRoles() {
+    public ResBody getAllRoles(HttpSession session) {
         ResBody resBody = new ResBody();
+        Admin admin = (Admin) session.getAttribute("admin");
+        if(service.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
         List<Role> list= service.getAllRoles();
         resBody.setData(list);
         resBody.setCode(0);
+        }else
+        {
+            resBody.setCode(500);
+            resBody.setMsg("不能查看!非管理员不能查看");
+        }
         return resBody;
     }
 }

@@ -5,6 +5,7 @@ import com.zhumeijia.wuye.bean.Building;
 import com.zhumeijia.wuye.bean.Gonggao;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.service.GonggaoService;
+import com.zhumeijia.wuye.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,8 @@ import java.util.List;
 public class GonggaoController {
     @Autowired
     GonggaoService service;
+    @Autowired
+    RoleService rservice;
     private static final Logger LOG = LoggerFactory.getLogger(GonggaoController.class);
     @GetMapping("/api/getAllGonggaos")
     public ResBody getAllGonggaos(@RequestParam int page,
@@ -43,7 +46,11 @@ public class GonggaoController {
     @PostMapping("/api/addGonggao")
     public ResBody addGonggao(@RequestBody Gonggao gonggao, HttpSession session) {
         ResBody resBody = new ResBody();
+
         Admin admin = (Admin) session.getAttribute("admin");
+
+        if( rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
         gonggao.setCreateTime(new Date());
         gonggao.setCreateBy(admin.getId());
         int i = service.addGonggao(gonggao);
@@ -54,6 +61,11 @@ public class GonggaoController {
             resBody.setCode(500);
             resBody.setMsg("添加失败");
         }
+        }else
+        {
+            resBody.setCode(500);
+            resBody.setMsg("不能修改!非管理员不能增加");
+        }
         return resBody;
     }
 
@@ -61,6 +73,9 @@ public class GonggaoController {
     public ResBody updateGonggao(@RequestBody Gonggao gonggao, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
+
+        if( rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
         gonggao.setUpdateTime(new Date());
         gonggao.setUpdateBy(admin.getId());
         int i = service.updateGonggao(gonggao);
@@ -71,12 +86,21 @@ public class GonggaoController {
             resBody.setCode(500);
             resBody.setMsg("修改失败");
         }
+        }else
+        {
+            resBody.setCode(500);
+            resBody.setMsg("不能修改!非管理员不能修改");
+        }
         return resBody;
     }
 
     @GetMapping("/api/delGonggao")
-    public ResBody delBuilding(@RequestParam int id) {
+    public ResBody delBuilding(@RequestParam int id, HttpSession session) {
         ResBody resBody = new ResBody();
+        Admin admin = (Admin) session.getAttribute("admin");
+
+        if( rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
         int i = service.delGonggao(id);
         if (i == 1){
             resBody.setCode(200);
@@ -85,6 +109,11 @@ public class GonggaoController {
             resBody.setCode(500);
             resBody.setMsg("删除失败");
         }
+                }else
+                {
+                    resBody.setCode(500);
+                    resBody.setMsg("不能修改!非管理员不能删除");
+                }
         return resBody;
     }
 

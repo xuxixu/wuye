@@ -4,6 +4,7 @@ import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.bean.Room;
 import com.zhumeijia.wuye.bean.Tousu;
 import com.zhumeijia.wuye.bean.User;
+import com.zhumeijia.wuye.service.RoleService;
 import com.zhumeijia.wuye.service.TousuService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 public class TousuController {
     @Autowired
     TousuService service;
+    @Autowired
+    RoleService rservice;
     private static final Logger LOG = LoggerFactory.getLogger(TousuController.class);
     @GetMapping("/api/getAllTousus")
     public ResBody getAllTousus(@RequestParam int page,
@@ -51,6 +55,7 @@ public class TousuController {
         if (user!=null){
             tousu.setUid(user.getId());
         }
+        tousu.setTime(new Date());
         int i = service.addTousu(tousu);
         if (i == 1){
             resBody.setCode(200);

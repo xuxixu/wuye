@@ -3,6 +3,7 @@ package com.zhumeijia.wuye.controller;
 import com.zhumeijia.wuye.bean.Danyuan;
 import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.bean.Room;
+import com.zhumeijia.wuye.service.RoleService;
 import com.zhumeijia.wuye.service.RoomService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,6 +17,8 @@ import java.util.List;
 public class RoomController {
     @Autowired
     RoomService service;
+    @Autowired
+    RoleService rservice;
     private static final Logger LOG = LoggerFactory.getLogger(RoomController.class);
     @GetMapping("/api/getAllRooms")
     public ResBody getAllRooms(@RequestParam int page,

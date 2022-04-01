@@ -5,6 +5,7 @@ import com.zhumeijia.wuye.bean.ResBody;
 import com.zhumeijia.wuye.bean.Tousu;
 import com.zhumeijia.wuye.bean.User;
 import com.zhumeijia.wuye.service.RepairService;
+import com.zhumeijia.wuye.service.RoleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,12 +13,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @RestController
 public class RepairController {
     @Autowired
     RepairService service;
+    @Autowired
+    RoleService rservice;
     private static final Logger LOG = LoggerFactory.getLogger(Repair.class);
     @GetMapping("/api/getAllRepairs")
     public ResBody getAllRepairs(@RequestParam int page,
@@ -51,6 +55,7 @@ public class RepairController {
         if (user!=null){
             repair.setUid(user.getId());
         }
+        repair.setTime(new Date());
         int i = service.addRepair(repair);
         if (i == 1){
             resBody.setCode(200);

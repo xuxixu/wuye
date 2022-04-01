@@ -13,10 +13,7 @@ import com.alipay.api.response.AlipayTradePayResponse;
 import com.alipay.api.response.AlipayTradeRefundResponse;
 import com.zhumeijia.wuye.bean.*;
 import com.zhumeijia.wuye.mapper.RefundMapper;
-import com.zhumeijia.wuye.service.ProcurementRefundService;
-import com.zhumeijia.wuye.service.ProcurementService;
-import com.zhumeijia.wuye.service.User_PaymentService;
-import com.zhumeijia.wuye.service.User_Payment_RefundService;
+import com.zhumeijia.wuye.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +43,8 @@ public class PayController {
     User_Payment_RefundService uprservice;
     @Autowired
     RefundMapper rdao;
+    @Autowired
+    RoleService rservice;
 //    应用id
     @Value("${alipay_test.APP_ID}")
     private String APP_ID;

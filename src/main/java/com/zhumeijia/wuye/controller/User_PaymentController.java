@@ -1,6 +1,7 @@
 package com.zhumeijia.wuye.controller;
 
 import com.zhumeijia.wuye.bean.*;
+import com.zhumeijia.wuye.service.RoleService;
 import com.zhumeijia.wuye.service.User_PaymentService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +16,8 @@ import java.util.List;
 public class User_PaymentController {
     @Autowired
     User_PaymentService service;
+    @Autowired
+    RoleService rservice;
     private static final Logger LOG = LoggerFactory.getLogger(User_PaymentController.class);
     @GetMapping("/api/getAllPaymentDetails")
     public ResBody getAllPaymentDetails(@RequestParam int page,
