@@ -27,7 +27,7 @@ public class GoodsTypeController {
                                     @RequestParam int limit, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             int count = service.getCount();
             List<Goodstype> list= service.getAllGoodstype(page, limit);
@@ -46,7 +46,7 @@ public class GoodsTypeController {
     public ResBody addBuilding(@RequestBody Goodstype goodstype,HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             int i = service.addGoodstype(goodstype);
             if (i == 1){
@@ -68,7 +68,7 @@ public class GoodsTypeController {
     public ResBody updateGoodstype(@RequestBody Goodstype goodstype,HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         int i = service.updateGoodstype(goodstype);
         if (i == 1){
@@ -90,7 +90,7 @@ public class GoodsTypeController {
     public ResBody delGoodstype(@RequestParam int id,HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         int i = service.delGoodstype(id);
         if (i == 1){
@@ -114,7 +114,7 @@ public class GoodsTypeController {
                                 @RequestParam String name,HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
 
         int count = service.getCount(name);
@@ -134,7 +134,7 @@ public class GoodsTypeController {
     public ResBody getAllGoodstypes(HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
 
             List<Goodstype> list= service.getAllGoodstypes();

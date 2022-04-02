@@ -24,40 +24,72 @@ public class User_PaymentController {
                                         @RequestParam int limit, HttpSession session) {
         User user = (User) session.getAttribute("user");
         int count = 0;
+        ResBody resBody = new ResBody();
         List<User_Payment> list = new ArrayList<>();
         if (user!=null){
             int user_id=user.getId();
             count = service.getCount(user_id);
             list= service.getAllPaymentDetails(page, limit,user_id);
         }else {
-            count = service.getCount();
-            list= service.getAllPaymentDetails(page, limit);
+                count = service.getCount();
+                list= service.getAllPaymentDetails(page, limit);
         }
-        ResBody resBody = new ResBody();
+
         resBody.setCount(count);
         resBody.setData(list);
         resBody.setCode(0);
         return resBody;
     }
 
-    @GetMapping("/api/findPaymentDetail")
-    public ResBody findPaymentDetail(@RequestParam int page,
-                                @RequestParam int limit,
-                                @RequestParam String name) {
-        int count = 0;
 
-        List<User_Payment> list= new ArrayList<>();
+    @GetMapping("/api/getAllPaymentDetail")
+    public ResBody getAllPaymentDetail(@RequestParam int page,
+                                        @RequestParam int limit, HttpSession session) {
+        int count = 0;
         ResBody resBody = new ResBody();
-        if (name.isEmpty()){
+        List<User_Payment> list = new ArrayList<>();
+        Admin admin = (Admin) session.getAttribute("admin");
+        System.out.println(admin);
+        if( rservice.findRoleById(admin.getRid()).getName().equals("记费员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
             count = service.getCount();
             list= service.getAllPaymentDetails(page, limit);
-        }else {
-            count = service.getCount(name);
-            list= service.getAllPaymentDetails(page, limit,name);
+            resBody.setCount(count);
+            resBody.setData(list);
+            resBody.setCode(0);
+        }else
+        {
+            resBody.setCode(500);
+            resBody.setMsg("不能查看! 非记费员或非管理员不能查看");
         }
-        resBody.setCount(count);
-        resBody.setData(list);
-        resBody.setCode(0);
+        return resBody;
+    }
+
+    @GetMapping("/api/findPaymentDetails")
+    public ResBody findPaymentDetails(@RequestParam int page,
+                                @RequestParam int limit,
+                                @RequestParam String name,HttpSession session) {
+        int count = 0;
+        List<User_Payment> list= new ArrayList<>();
+        ResBody resBody = new ResBody();
+        Admin admin = (Admin) session.getAttribute("admin");
+        if( rservice.findRoleById(admin.getRid()).getName().equals("记费员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
+            if (name.isEmpty()){
+                count = service.getCount();
+                list= service.getAllPaymentDetails(page, limit);
+            }else {
+                count = service.getCount(name);
+                list= service.getAllPaymentDetails(page, limit,name);
+            }
+            resBody.setCount(count);
+            resBody.setData(list);
+            resBody.setCode(0);
+        }else
+        {
+            resBody.setCode(500);
+            resBody.setMsg("不能查看! 非记费员或非管理员不能查看");
+        }
         return resBody;
     }
 
@@ -73,8 +105,9 @@ public class User_PaymentController {
             count = service.getCount();
             list= service.getAllPaymentDetailsByUid(page, limit,user.getId());
         }else {
-            count = service.getCount(name);
-            list= service.getAllPaymentDetailsByUidByStatus(page, limit,name,user.getId());
+
+                count = service.getCount(name);
+                list= service.getAllPaymentDetailsByUidByStatus(page, limit,name,user.getId());
         }
         resBody.setCount(count);
         resBody.setData(list);
@@ -82,17 +115,24 @@ public class User_PaymentController {
         return resBody;
     }
     @PostMapping("/api/fenpeiPayment")
-    public ResBody fenpeiPayment(@RequestBody User_Payment user_payment) {
+    public ResBody fenpeiPayment(@RequestBody User_Payment user_payment, HttpSession session) {
         ResBody resBody = new ResBody();
-        System.out.println(user_payment);
-        user_payment.setUid(user_payment.getId());
-        int i = service.fenpei(user_payment.getUid(),user_payment.getPid(),user_payment.getValue());
-        if (i == 1){
-            resBody.setCode(200);
-            resBody.setMsg("添加成功");
-        }else{
+        Admin admin = (Admin) session.getAttribute("admin");
+        if( rservice.findRoleById(admin.getRid()).getName().equals("记费员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        {
+            user_payment.setUid(user_payment.getId());
+            int i = service.fenpei(user_payment.getUid(),user_payment.getPid(),user_payment.getValue());
+            if (i == 1){
+                resBody.setCode(200);
+                resBody.setMsg("添加成功");
+            }else{
+                resBody.setCode(500);
+                resBody.setMsg("添加失败");
+            }
+        }else
+        {
             resBody.setCode(500);
-            resBody.setMsg("添加失败");
+            resBody.setMsg("不能添加! 非记费员或非管理员不能添加账单");
         }
         return resBody;
     }

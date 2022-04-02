@@ -30,7 +30,7 @@ public class ProcurementController {
         List<Procurement> list= service.getAllProcurement(page, limit);
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             resBody.setCount(count);
             resBody.setData(list);
@@ -61,7 +61,7 @@ public class ProcurementController {
         List<Procurement> list= new ArrayList<>();
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         count = service.getCount(Integer.valueOf(name));
         list= service.getAllProcurement(page, limit,Integer.valueOf(name));
@@ -82,7 +82,7 @@ public class ProcurementController {
     public ResBody queren(@RequestParam int id,HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             int i = service.queren(id);
             if (i == 1){

@@ -112,7 +112,7 @@ public class GonggaoController {
                 }else
                 {
                     resBody.setCode(500);
-                    resBody.setMsg("不能修改!非管理员不能删除");
+                    resBody.setMsg("不能修改! 非管理员不能删除");
                 }
         return resBody;
     }

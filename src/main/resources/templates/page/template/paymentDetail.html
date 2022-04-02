@@ -78,7 +78,7 @@
         // 渲染表格
         var insTb = table.render({
             elem: '#tableBook',
-            url: '/api/getAllPaymentDetails',
+            url: '/api/getAllPaymentDetail',
             page: true,
             height: "full-100",
             toolbar: true,
@@ -99,7 +99,7 @@
 
         // 搜索
         form.on('submit(formSubSearchBook)', function (data) {
-            insTb.reload({where: data.field,url:'/api/findPaymentDetail',page : {curr : 1}}, 'data');
+            insTb.reload({where: data.field,url:'/api/findPaymentDetails',page : {curr : 1}}, 'data');
         });
 
         table.on('tool(tableBook)', function (obj) {

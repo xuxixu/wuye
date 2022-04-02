@@ -26,7 +26,7 @@ public class GoodsController {
                                 @RequestParam int limit, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
 
         int count = service.getCount();
@@ -47,7 +47,7 @@ public class GoodsController {
     public ResBody shenqing(@RequestBody Goods goods, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
 
         int i = service.shenqing(goods);
@@ -71,7 +71,7 @@ public class GoodsController {
 
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         int i = service.caiyong(goods);
         if (i == 1){
@@ -96,7 +96,7 @@ public class GoodsController {
                                 @RequestParam String name, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         System.out.println(name);
         int count = service.getCount(name);
@@ -116,7 +116,7 @@ public class GoodsController {
     public ResBody getAllGoodss( HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         List<Goods> list= service.getAllGoodss();
         resBody.setData(list);
