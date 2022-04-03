@@ -38,6 +38,21 @@ public class IndexController {
     }
 
 
+    @GetMapping("/exit")
+    public String exit(HttpSession session) {
+        if(session.getAttribute("admin") != null)
+        {
+            session.removeAttribute("admin");
+            return "page/template/login";
+        }
+        if(session.getAttribute("user") != null)
+        {
+            session.removeAttribute("user");
+            return "page/system/login";
+        }
+        return "page/template/login";
+    }
+
     @GetMapping("/index")
     public String index() {
         return "index";

@@ -20,7 +20,8 @@ spring:
     #配置模板路径，默认是templates，可以不用配置
     prefix: classpath:/templates/
     suffix:  .html
-
+  mvc:
+    static-path-pattern: /**
   datasource:
     url: jdbc:mysql://localhost:3306/wuye?characterEncoding=utf8&useSSL=false&serverTimezone=UTC&rewriteBatchedStatements=true
     username: root
