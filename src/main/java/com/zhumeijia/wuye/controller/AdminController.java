@@ -31,6 +31,7 @@ public class AdminController {
         String username = params.get("username").toString();
         String password = params.get("password").toString();
         Admin admin = service.findAdmin(username,password);
+        admin.setRole(rservice.findRoleById(admin.getRid()));
         if (admin == null){
             resBody.setCode(500);
             resBody.setMsg("登录失败，请重新登录");

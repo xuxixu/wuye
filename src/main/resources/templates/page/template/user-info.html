@@ -171,39 +171,39 @@
                                         <label class="layui-form-label">邮箱:</label>
                                         <div class="layui-input-block">
                                             <input type="text" name="email" th:value="${session.admin.email}"
-                                                   class="layui-input" lay-verify="required" required/>
+                                                   class="layui-input" lay-verify="required" disabled/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">昵称:</label>
                                         <div class="layui-input-block">
                                             <input type="text" name="name" th:value="${session.admin.username}"
-                                                   class="layui-input" lay-verify="required" required/>
+                                                   class="layui-input" lay-verify="required" disabled/>
+                                        </div>
+                                    </div>
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">角色:</label>
+                                        <div class="layui-input-block">
+                                            <input type="text" name="rid" th:value="${session.admin.role.getName()}"
+                                                   class="layui-input" lay-verify="required" disabled/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">个人简介:</label>
                                         <div class="layui-input-block">
                                             <input type="text" name="desc" th:value="${session.admin.desc}"
-                                                   class="layui-input" />
+                                                   class="layui-input" disabled/>
                                         </div>
                                     </div>
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">联系电话:</label>
                                         <div class="layui-input-block">
                                             <input type="text" name="phone1" value="0286" style="width: 60px;"
-                                                   class="layui-input" lay-verify="required" required/>
+                                                   class="layui-input" lay-verify="required" disabled/>
                                             <div style="position: absolute;left: 65px;right: 0;top: 0;">
                                                 <input type="text" name="phone2" th:value="${session.admin.phone}" class="layui-input"
-                                                       lay-verify="required" required/>
+                                                       lay-verify="required" disabled/>
                                             </div>
-                                        </div>
-                                    </div>
-                                    <div class="layui-form-item">
-                                        <div class="layui-input-block">
-                                            <button class="layui-btn" lay-filter="userInfoSubmit" lay-submit>
-                                                更新基本信息
-                                            </button>
                                         </div>
                                     </div>
                                 </div>
@@ -218,14 +218,13 @@
                                             <div class="bd-list-item-text">已绑定手机：[[${session.admin.phone}]]</div>
 
                                         </div>
-                                        <a class="bd-list-item-oper">修改</a>
+
                                     </div>
                                     <div class="bd-list-item">
                                         <div class="bd-list-item-content">
                                             <div class="bd-list-item-lable">密保邮箱</div>
                                             <div class="bd-list-item-text">已绑定邮箱：[[${session.admin.email}]]</div>
                                         </div>
-                                        <a class="bd-list-item-oper">修改</a>
                                     </div>
                                     <div class="bd-list-item">
                                         <div class="bd-list-item-img">
@@ -278,6 +277,25 @@
         $('#imgHead').click(function () {
             admin.cropImg({
                 onCrop: function (res) {
+                    alert(res);
+                    $.ajax({
+                        url:"/api/updateAdminImage",
+                        type:"POST",
+                        data:res,
+                        contentType:"application/json; charset=utf-8",
+                        dataType:"json",
+                        mimeType:"multipart/form-data",
+                        success: function(data){
+                            layer.closeAll('loading');
+                            if (data.code == 200) {
+                                layer.close(dIndex);
+                                layer.msg(data.msg, {icon: 1});
+                                insTb.reload({}, 'data');
+                            } else {
+                                layer.msg("data.msg", {icon: 2});
+                            }
+                        }
+                    })
 
                     $('#imgHead>img').attr('src', res);
 
