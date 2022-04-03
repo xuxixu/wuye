@@ -4,9 +4,9 @@
 <mapper namespace="com.zhumeijia.wuye.mapper.AdminMapper">
     <insert id="addAdmin" parameterType="com.zhumeijia.wuye.bean.Admin">
         insert into admin
-        ( id,username,password,phone,sex,email,rid
+        ( id,username,password,phone,sex,email,rid,image
         )
-        values (#{id},#{username},'123456',#{phone},#{sex},#{email},#{rid}
+        values (#{id},#{username},'123456',#{phone},#{sex},#{email},#{rid},#{image},#{desc}
                )
     </insert>
     <update id="updatePass">
@@ -32,6 +32,12 @@
             </if>
             <if test="rid != null">
                 rid = #{rid},
+            </if>
+            <if test="image != null">
+                image = #{image},
+            </if>
+            <if test="desc != null">
+                desc = #{desc},
             </if>
         </set>
         where   id = #{id,jdbcType=INTEGER}

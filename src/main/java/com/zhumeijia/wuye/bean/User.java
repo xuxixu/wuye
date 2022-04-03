@@ -16,4 +16,5 @@ public class User {
     Integer status;
     Car car;
     Room room;
+    String image;
 }

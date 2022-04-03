@@ -4,6 +4,7 @@ server:
     uri-encoding: UTF-8
   port: 8080
 
+
 spring:
   devtools:
     restart:
@@ -44,6 +45,10 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  http:
+    multipart:
+      max-file-size: 100Mb   #文件上传大小
+      max-request-size: 200Mb  #最打请求大小
 
 #mybatisPlu
 mybatis-plus:

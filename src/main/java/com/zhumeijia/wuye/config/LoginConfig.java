@@ -29,6 +29,8 @@ public class LoginConfig implements WebMvcConfigurer {
                 "/static/assets/libs/echarts/*.*",
                 "/static/assets/libs/jquery/*.*",
 
+                "/static/user/images/*.*",
+
                 "/static/assets/libs/layui/*.*",
                 "/static/assets/libs/layui/css/*.*",
                 "/static/assets/libs/layui/css/modules/laydate/default/*.*",
@@ -36,6 +38,7 @@ public class LoginConfig implements WebMvcConfigurer {
                 "/static/assets/libs/layui/font/*.*",
                 "/static/assets/libs/layui/images/face/*.*",
                 "/static/assets/libs/layui/lay/modules/*.*"
+
 
         );
     }

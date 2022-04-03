@@ -60,7 +60,7 @@
             </li>
             <li class="layui-nav-item" lay-unselect>
                 <a>
-                    <img src="assets/images/head.png" class="layui-nav-img">
+                    <img th:src="|${session.admin.image}|" class="layui-nav-img"/>
                     <cite th:text="${session.admin.username}"></cite>
                 </a>
                 <dl class="layui-nav-child">
@@ -148,6 +148,9 @@
                         <dd><a lay-href="/admin">人员管理</a></dd>
                         <dd><a lay-href="/rolelist">角色管理</a></dd>
                     </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a lay-href="/user-info"><i class="layui-icon layui-icon-unlink"></i>&emsp;<cite>个人中心</cite></a>
                 </li>
             </ul>
         </div>

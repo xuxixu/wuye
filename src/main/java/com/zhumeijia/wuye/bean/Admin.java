@@ -16,4 +16,6 @@ public class Admin {
     Integer id;
     Integer rid;
     Role role;
+    String image;
+    String desc;
 }

@@ -59,7 +59,7 @@
             </li>
             <li class="layui-nav-item" lay-unselect>
                 <a>
-                    <img src="//t.cn/RCzsdCq" class="layui-nav-img">
+                    <img th:src="|${session.user.image}|" class="layui-nav-img"/>
                     <cite th:text="${session.user.username}"></cite>
                 </a>
                 <dl class="layui-nav-child">
