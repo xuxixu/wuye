@@ -26,7 +26,7 @@ public class WarehouseController {
                                     @RequestParam int limit, HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
             int count = service.getCount();
             List<Warehouse> list= service.getAllWarehouse(page, limit);
@@ -45,7 +45,7 @@ public class WarehouseController {
     public ResBody addBuilding(@RequestBody Warehouse warehouse,HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         int i = service.addWarehouse(warehouse);
         if (i == 1){
@@ -67,7 +67,7 @@ public class WarehouseController {
     public ResBody updateWarehouse(@RequestBody Warehouse warehouse,HttpSession session) {
         ResBody resBody = new ResBody();
         Admin admin = (Admin) session.getAttribute("admin");
-        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+        if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
         {
         int i = service.updateWarehouse(warehouse);
         if (i == 1){
@@ -89,7 +89,7 @@ public class WarehouseController {
     public ResBody delWarehouse(@RequestParam int id,HttpSession session) {
         ResBody resBody = new ResBody();
             Admin admin = (Admin) session.getAttribute("admin");
-            if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+            if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
             {
         int i = service.delWarehouse(id);
         if (i == 1){
@@ -113,7 +113,7 @@ public class WarehouseController {
                                 @RequestParam String name,HttpSession session) {
         ResBody resBody = new ResBody();
                 Admin admin = (Admin) session.getAttribute("admin");
-                if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+                if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
                 {
         int count = service.getCount(name);
         List<Warehouse> list= service.findWarehouse(page, limit,name);
@@ -132,7 +132,7 @@ public class WarehouseController {
     public ResBody getAllWarehouses(HttpSession session) {
         ResBody resBody = new ResBody();
                     Admin admin = (Admin) session.getAttribute("admin");
-                    if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") && rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
+                    if( rservice.findRoleById(admin.getRid()).getName().equals("物料管理员") || rservice.findRoleById(admin.getRid()).getName().equals("管理员"))
                     {
         List<Warehouse> list= service.getAllWarehouses();
         resBody.setData(list);
