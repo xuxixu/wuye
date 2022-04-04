@@ -26,12 +26,11 @@ public class AdminInterceptor implements  HandlerInterceptor {
      */
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) {
-        System.out.println("执行了TestInterceptor的preHandle方法");
+
         try {
             //统一拦截（查询当前session是否存在user）(这里user会在每次登陆成功后，写入session)
             User user=(User)request.getSession().getAttribute("user");
             Admin admin=(Admin)request.getSession().getAttribute("admin");
-            System.out.println("sssssssssssssssssssssssssssssssssssssssssssssssss");
             if(user !=null || admin != null){
                 return true;
             }
@@ -55,7 +54,7 @@ public class AdminInterceptor implements  HandlerInterceptor {
      */
     @Override
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) {
-         System.out.println("执行了TestInterceptor的postHandle方法");
+
     }
 
     /**
@@ -63,7 +62,7 @@ public class AdminInterceptor implements  HandlerInterceptor {
      */
     @Override
     public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
-        System.out.println("执行了TestInterceptor的afterCompletion方法");
+
     }
 
 }

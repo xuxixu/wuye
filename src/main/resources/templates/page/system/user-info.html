@@ -122,9 +122,9 @@
                     <div class="text-center layui-text">
                         <div class="user-info-head" id="imgHead">
                             <!--<img th:src="@{../../${session.admin.image}}">-->
-                            <img th:src="|${session.admin.image}|"/>
+                            <img th:src="|${session.user.image}|"/>
                         </div>
-                        <h2 style="padding-top: 20px;">[[${session.admin.username}]]</h2>
+                        <h2 style="padding-top: 20px;">[[${session.user.username}]]</h2>
                         <p style="padding-top: 8px;">海纳百川，有容乃大</p>
                     </div>
                     <div class="layui-text" style="padding-top: 30px;">
@@ -169,40 +169,21 @@
 
                                 <div class="layui-form user-info-form layui-text" style="max-width: 400px;padding-top: 25px;">
                                     <div class="layui-form-item">
-                                        <label class="layui-form-label">邮箱:</label>
-                                        <div class="layui-input-block">
-                                            <input type="text" name="email" th:value="${session.admin.email}"
-                                                   class="layui-input" lay-verify="required" disabled/>
-                                        </div>
-                                    </div>
-                                    <div class="layui-form-item">
                                         <label class="layui-form-label">昵称:</label>
                                         <div class="layui-input-block">
-                                            <input type="text" name="name" th:value="${session.admin.username}"
+                                            <input type="text" name="name" th:value="${session.user.username}"
                                                    class="layui-input" lay-verify="required" disabled/>
                                         </div>
                                     </div>
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">角色:</label>
-                                        <div class="layui-input-block">
-                                            <input type="text" name="rid" th:value="${session.admin.role.getName()}"
-                                                   class="layui-input" lay-verify="required" disabled/>
-                                        </div>
-                                    </div>
-                                    <div class="layui-form-item">
-                                        <label class="layui-form-label">个人简介:</label>
-                                        <div class="layui-input-block">
-                                            <input type="text" name="desc" th:value="${session.admin.desc}"
-                                                   class="layui-input" disabled/>
-                                        </div>
-                                    </div>
+
+
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">联系电话:</label>
                                         <div class="layui-input-block">
                                             <input type="text" name="phone1" value="0286" style="width: 60px;"
                                                    class="layui-input" lay-verify="required" disabled/>
                                             <div style="position: absolute;left: 65px;right: 0;top: 0;">
-                                                <input type="text" name="phone2" th:value="${session.admin.phone}" class="layui-input"
+                                                <input type="text" name="phone2" th:value="${session.user.phone}" class="layui-input"
                                                        lay-verify="required" disabled/>
                                             </div>
                                         </div>
@@ -216,16 +197,9 @@
                                     <div class="bd-list-item">
                                         <div class="bd-list-item-content">
                                             <div class="bd-list-item-lable">密保手机</div>
-                                            <div class="bd-list-item-text">已绑定手机：[[${session.admin.phone}]]</div>
-
+                                            <div class="bd-list-item-text">已绑定手机：[[${session.user.phone}]]</div>
                                         </div>
 
-                                    </div>
-                                    <div class="bd-list-item">
-                                        <div class="bd-list-item-content">
-                                            <div class="bd-list-item-lable">密保邮箱</div>
-                                            <div class="bd-list-item-text">已绑定邮箱：[[${session.admin.email}]]</div>
-                                        </div>
                                     </div>
                                     <div class="bd-list-item">
                                         <div class="bd-list-item-img">
@@ -280,7 +254,7 @@
 
                 onCrop: function (res) {
                     $.ajax({
-                        url:"/api/updateAdminImage",
+                        url:"/api/updateUserImage",
                         type:"post",
                         data:{base64Data:res},
                         dataType:"json",

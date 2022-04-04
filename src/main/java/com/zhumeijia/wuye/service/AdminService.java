@@ -76,5 +76,8 @@ public class AdminService {
     public List<Admin> getAllAdmins() {
         return adminMapper.getAllAdmins();
     }
-    
+
+    public void updateAdminImage(Admin admin) {
+        adminMapper.updateAdminImage(admin);
+    }
 }

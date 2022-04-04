@@ -213,6 +213,11 @@ public class IndexController {
         return "page/system/index";
     }
 
+    @GetMapping("/user/user-info")
+    public String userUserinfo(){
+        return "page/system/user-info";
+    }
+
     @GetMapping("/user/console")
     public String userconsole(Model model,HttpSession session){
         User user = (User) session.getAttribute("user");

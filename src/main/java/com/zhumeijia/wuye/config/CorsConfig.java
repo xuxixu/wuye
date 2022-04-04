@@ -1,19 +1,13 @@
 package com.zhumeijia.wuye.config;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.*;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
-/**
- *
- *
- * @Package: com.*.*.config
- * @ClassName: LoginConfig
- * @Description:拦截器配置
- * @author: zk
- * @date: 2019年9月19日 下午2:18:35
- */
 @Configuration
-public class LoginConfig implements WebMvcConfigurer {
+public class CorsConfig extends WebMvcConfigurationSupport {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -41,10 +35,17 @@ public class LoginConfig implements WebMvcConfigurer {
 
 
         );
+
     }
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/").setViewName("/login");
+    }
+
+    @Override
+    protected void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/**").addResourceLocations("file:" +           System.getProperty("user.dir")+"\\src\\main\\resources\\static\\");
+        super.addResourceHandlers(registry);
     }
 
 }

@@ -12,6 +12,9 @@
     <update id="updatePass">
         update admin set password = #{newPsw} where id = #{id}
     </update>
+    <update id="updateAdminImage">
+        update admin set image = #{image} where id = #{id}
+    </update>
     <update id="updateAdmin" parameterType="com.zhumeijia.wuye.bean.Admin">
         update admin
         <set>
@@ -37,7 +40,7 @@
                 image = #{image},
             </if>
             <if test="desc != null">
-                desc = #{desc},
+                desc = #{desc}
             </if>
         </set>
         where   id = #{id,jdbcType=INTEGER}

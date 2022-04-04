@@ -21,4 +21,7 @@ public interface AdminMapper {
     public int getCountByName(@Param("name")String name);
     public List<Admin> findAdminByName(@Param("page") int page,@Param("limit") int limit,@Param("name") String name);
     public List<Admin> getAllAdmins();
+
+
+    void updateAdminImage(Admin admin);
 }

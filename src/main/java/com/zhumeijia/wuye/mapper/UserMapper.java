@@ -26,4 +26,6 @@ public interface UserMapper {
     User getUserById(Integer id);
 
     int findCountByName(String username);
+
+    void updateUserImage(User admin);
 }

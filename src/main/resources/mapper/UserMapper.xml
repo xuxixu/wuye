@@ -29,6 +29,9 @@
     <update id="updatePass">
         update `user` set `password` = #{newPsw} where id = #{id}
     </update>
+    <update id="updateUserImage">
+        update `user` set `image` = #{image} where id = #{id}
+    </update>
     <delete id="delUser" parameterType="int">
         DELETE from user where id=#{id}
     </delete>

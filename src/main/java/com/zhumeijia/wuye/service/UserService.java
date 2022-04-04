@@ -103,4 +103,8 @@ public class UserService {
     public int getCountByName(String username) {
         return dao.getCountByName(username);
     }
+
+    public void updateAdminImage(User admin) {
+        dao.updateUserImage(admin);
+    }
 }
