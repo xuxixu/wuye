@@ -175,7 +175,13 @@
                                                    class="layui-input" lay-verify="required" disabled/>
                                         </div>
                                     </div>
-
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">性别:</label>
+                                        <div class="layui-input-block">
+                                                <input type="text" name="sex" th:value="${session.user.sex== 1 ? '女': '男'}"
+                                                       class="layui-input" lay-verify="required" disabled/>
+                                        </div>
+                                    </div>
 
                                     <div class="layui-form-item">
                                         <label class="layui-form-label">联系电话:</label>
